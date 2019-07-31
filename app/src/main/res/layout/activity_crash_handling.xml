@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/crashBackColor"
+    tools:context="ir.darkdeveloper.english9th.Activities.BasicActivities.CrashHandler.CrashHandling">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="?actionBarSize"
+            android:background="@color/crashBackColor">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbarCrash"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/crashBackColor" />
+        </com.google.android.material.appbar.AppBarLayout>
+
+
+        <ImageView
+            android:id="@+id/imgCrash"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:contentDescription="s"
+            android:scaleType="fitXY"
+            android:src="@drawable/crash" />
+
+        <Button
+            android:id="@+id/btnSendFile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@drawable/btn_lan"
+            android:gravity="center"
+            android:text="ارسال"
+            android:textColor="#fff"
+            android:textSize="23sp" />
+
+        <TextView
+            android:id="@+id/txtCrash"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="5dp"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:text="@string/id_plantdg"
+            android:textColor="#fff"
+            android:textSize="20sp" />
+
+    </LinearLayout>
+</ScrollView>

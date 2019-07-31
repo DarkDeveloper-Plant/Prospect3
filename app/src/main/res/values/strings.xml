@@ -1,0 +1,36 @@
+<resources>
+    <string name="app_name">Prospect 3</string>
+    <string name="action_settings">Settings</string>
+    <string name="navigation_drawer_open" />
+    <string name="navigation_drawer_close" />
+    <string name="title_activity_setting_">Setting</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_lesson1">Lesson1</string>
+    <string name="title_activity_lesson2">Lesson2</string>
+    <string name="title_activity_lesson3">Lesson3</string>
+    <string name="title_activity_lesson">Lesson</string>
+    <string name="title_activity_lesson4">Lesson4</string>
+    <string name="title_activity_lesson5">Lesson5</string>
+    <string name="title_activity_lesson6">Lesson6</string>
+    <string name="title_activity_info">Info</string>
+
+    <string name="info_text">Developed by DarkDeveloper\nMade by Plant\n Thanks a lot to Mr. Rasooli</string>
+    <string name="sources">Book: Prospect 3\nSite: eng-dept.talif.sch.ir\nGrammars, translations and Exams: Plant</string>
+    <string name="title_activity_main2">Main2Activity</string>
+    <string name="title_activity_setting_toolbar">SettingToolbar</string>
+    <string name="appwidget_text">EXAMPLE</string>
+    <string name="configure">Configure</string>
+    <string name="add_widget">Add widget</string>
+
+    <string name="crash">ابتدا برنامه را از تسک ببنید و دوباره اجرا کنید، اگر مشکل پابرجا بود، به مسیر زیر در گوشی بروید:
+        \n\n
+	Setting/Apps/Prospect3/Storage
+        \n
+در اینجا روی گزینه clear data کلیک کنید و تایید کنید. سپس برنامه را دوباره اجرا کنید. مطمئن شوید که دسترسی ها را به برنامه می دهید.</string>
+    <string name="downloadDes">راهنما: ابتدا به اینترنت متصل شوید و مطمئن شوید که دسترسی نوشتن حافظه را به برنامه داده اید و حافظه خالی برای دانلود روی حافظه داخلی (دقت کنید نه حافظه جانبی) دارید. تا زمانیکه پیغام تمام نمایش داده نشده است از این صفحه خارج نشوید تا دانلود کامل و پردازش شود اگر هم خارج شدید برنامه را از تسک نبندید. حجم فایل حدود 25 مگابایت است. و اگر فایل ها ناقص دانلود شدند و مشکلات دیگری در پخش فایل صوتی بوجود آمد، روی دکمه clear cache در پایین صفحه کلیک کنید تا دانلود دوباره آغاز شود.</string>
+    <string name="id_plantdg">ابتدا برنامه را از تسک ببنید و دوباره اجرا کنید، اگر مشکل پابرجا بود به آی دی زیر این فایل را بفرستید:
+        \n
+        id: @plantdg_ad</string>
+
+
+</resources>

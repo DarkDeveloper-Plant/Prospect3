@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#f44336</color>
+    <color name="colorTabLight">#5567c9</color>
+    <color name="crashBackColor">#16151f</color>
+    <color name="colorTabDark">#252424</color>
+    <color name="dark">#424242</color>
+    <color name="light">#e7e7e7</color>
+    <color name="colorblack">#2196f3 </color>
+    <color name="colorwhite">#ff5722</color>
+    <color name="dark_card">#585858</color>
+    <color name="nav_color">#8f8f8f</color>
+    <color name="light_card">#f5f5f5</color>
+    <color name="white">#fff</color>
+</resources>

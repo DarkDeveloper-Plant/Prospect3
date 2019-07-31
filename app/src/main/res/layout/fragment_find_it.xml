@@ -1,0 +1,98 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <include layout="@layout/app_bar_parts"
+        android:id="@+id/include"/>
+    <com.melnykov.fab.ObservableScrollView
+        android:layout_width="match_parent"
+        android:id="@+id/scrollFind"
+        android:layout_below="@+id/include"
+        android:layout_height="match_parent">
+
+        <LinearLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+            tools:context="ir.darkdeveloper.english9th.Activities.Lessons.Lesson1.Activities.FindIt"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:paddingBottom="5dp">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/find_c"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="#d9d9d9"
+                android:padding="4dp"
+                app:cardCornerRadius="3dp"
+                app:cardElevation="6dp"
+                app:cardPreventCornerOverlap="true"
+                app:cardUseCompatPadding="true">
+
+                <TextView
+                    android:id="@+id/textView_findit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="3dp"
+                    android:gravity="start" />
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:id="@+id/txt_hint"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="3dp"
+                android:layout_marginLeft="3dp"
+                android:layout_marginRight="3dp"
+                android:layout_marginEnd="3dp"
+                android:gravity="center"
+                android:layout_marginTop="20dp"
+                android:text="How many to be verbs did you find? Enter latin number below" />
+
+            <EditText
+                android:id="@+id/edit_findit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:hint="verbs"
+                android:gravity="center"
+                android:numeric="integer"
+                android:textColorHint="#8c8c8c" />
+
+            <EditText
+                android:id="@+id/edit_findit2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:numeric="integer"
+                android:hint="only text or number for the adjectives"
+                android:textColorHint="#8c8c8c"
+                android:visibility="gone" />
+
+            <ir.adad.androidsdk.AdadBannerAd
+                android:id="@+id/banner_ad_view"
+                android:layout_width="320dp"
+                android:layout_height="48dp"
+                app:token="83699cf2-3f11-497f-a4c3-a2271f697617"
+                android:layout_gravity="center"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp"/>
+
+            <Button
+                android:id="@+id/btn_findit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/button_design"
+                android:text="Check"
+                android:textColor="#fff" />
+        </LinearLayout>
+    </com.melnykov.fab.ObservableScrollView>
+
+</RelativeLayout>

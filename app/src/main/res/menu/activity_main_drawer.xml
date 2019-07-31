@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_test"
+            android:icon="@drawable/ic_check_box_black_24dp"
+            android:title="Tests"/>
+        <item
+            android:id="@+id/nav_settings"
+            android:icon="@drawable/ic_settings_24dp"
+            android:title="Settings" />
+        <item
+            android:id="@+id/nav_download"
+            android:icon="@drawable/ic_file_download"
+            android:title="DownloadCenter" />
+        <item
+            android:id="@+id/nav_about"
+            android:icon="@drawable/ic_info_24dp"
+            android:title="Info" />
+    </group>
+    <item android:title="more">
+        <menu>
+            <item
+                android:id="@+id/nav_share"
+                android:icon="@drawable/ic_share"
+                android:title="Share app" />
+            <item
+                android:id="@+id/nav_review"
+                android:icon="@drawable/ic_star_24dp"
+                android:title="Rate Us" />
+            <item
+                android:id="@+id/nav_apps"
+                android:icon="@drawable/ic_apps_24dp"
+                android:title="OtherApps" />
+            <item
+                android:id="@+id/channel_nav"
+                android:icon="@drawable/ic_group_black_24dp"
+                android:title="Channel" />
+        </menu>
+    </item>
+
+</menu>

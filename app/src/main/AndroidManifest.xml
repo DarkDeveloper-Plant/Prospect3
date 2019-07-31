@@ -1,0 +1,418 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="ir.plant.english9th">
+
+    <uses-sdk tools:overrideLibrary="co.ronash.pushe" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <!---->
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        tools:node="merge" />
+    <uses-permission
+        android:name="android.permission.READ_EXTERNAL_STORAGE"
+        tools:node="merge" />
+    <uses-permission
+        android:name="android.permission.READ_PHONE_STATE"
+        tools:node="merge" />
+    <uses-permission
+        android:name="android.permission.ACCESS_COARSE_LOCATION"
+        tools:node="remove" />
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <permission
+        android:name="ir.plant.english9th.permission.C2D_MESSAGE"
+        android:protectionLevel="signature" />
+    <uses-permission android:name="ir.plant.english9th.permission.C2D_MESSAGE" />
+    <uses-permission android:name="com.google.android.gms.permission.ACTIVITY_RECOGNITION"/>
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher1"
+        android:label="@string/app_name"
+        android:largeHeap="true"
+        android:supportsRtl="false"
+        android:theme="@style/AppTheme"
+        tools:ignore="GoogleAppIndexingWarning"
+        tools:replace="supportsRtl">
+        <activity
+            android:name="ir.darkdeveloper.english9th.Activities.BasicActivities.ContactUs"
+            android:label="Contact Us"
+            android:theme="@style/Base.Theme.AppCompat.Light.Dialog" />
+        <activity
+            android:name="ir.darkdeveloper.english9th.Activities.BasicActivities.MainActivity"
+            android:theme="@style/AppTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+
+        <activity
+            android:name="ir.darkdeveloper.english9th.Activities.BasicActivities.DownloadCenter"
+            android:label="Download Center"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name="ir.darkdeveloper.english9th.Activities.BasicActivities.Setting_Activity"
+            android:label="Settings"
+            android:theme="@style/AppTheme" />
+
+
+        <activity
+            android:name="ir.darkdeveloper.english9th.Activities.BasicActivities.CrashHandler.CrashHandling"
+            android:label="">
+            <intent-filter>
+                <action android:name="ir.darkdeveloper.english9th.Activities.BasicActivities.CrashHandler.CrashHandling" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <!-- Lessons -->
+
+
+        <!-- Lesson 1 Activities -->
+        <activity
+            android:name="ir.darkdeveloper.english9th.Activities.Lessons.Lesson1.Lesson1"
+            android:label=""
+            android:theme="@style/AppTheme">
+            <intent-filter>
+                <action android:name="ir.darkdeveloper.english9th.Activities.Lessons.Lesson1.Lesson1" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="ir.darkdeveloper.english9th.Activities.Lessons.Lesson1.Activities.Conversation"
+            android:label=""
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name="ir.darkdeveloper.english9th.Activities.Lessons.Lesson1.Activities.Words"
+            android:label=""
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name="ir.darkdeveloper.english9th.Activities.Lessons.Lesson1.Activities.LanguageMelody"
+            android:label=""
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name="ir.darkdeveloper.english9th.Activities.Lessons.Lesson1.Activities.Grammar"
+            android:label=""
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name="ir.darkdeveloper.english9th.Activities.Lessons.Lesson1.Activities.FindIt"
+            android:label=""
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name="ir.darkdeveloper.english9th.Activities.Lessons.Lesson1.Activities.LRW"
+            android:label=""
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name="ir.darkdeveloper.english9th.Activities.Lessons.Lesson1.Activities.EWords"
+            android:label=""
+            android:theme="@style/AppTheme" />
+        <!-- End Lesson 1 Activities -->
+
+
+        <!-- Lesson 2 Activities -->
+        <activity
+            android:name="ir.darkdeveloper.english9th.Activities.Lessons.Lesson2.Lesson2"
+            android:label=""
+            android:theme="@style/AppTheme">
+            <intent-filter>
+                <action android:name="ir.darkdeveloper.english9th.Activities.Lessons.Lesson2.Lesson2" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="ir.darkdeveloper.english9th.Activities.Lessons.Lesson2.Activities.Conversation"
+            android:label=""
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name="ir.darkdeveloper.english9th.Activities.Lessons.Lesson2.Activities.Words"
+            android:label=""
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name="ir.darkdeveloper.english9th.Activities.Lessons.Lesson2.Activities.LanguageMelody"
+            android:label=""
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name="ir.darkdeveloper.english9th.Activities.Lessons.Lesson2.Activities.Grammar"
+            android:label=""
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name="ir.darkdeveloper.english9th.Activities.Lessons.Lesson2.Activities.FindIt"
+            android:label=""
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name="ir.darkdeveloper.english9th.Activities.Lessons.Lesson2.Activities.LRW"
+            android:label=""
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name="ir.darkdeveloper.english9th.Activities.Lessons.Lesson2.Activities.EWords"
+            android:label=""
+            android:theme="@style/AppTheme" />
+        <!-- End Lesson 2 Activities -->
+
+
+        <!-- Lesson 3 Activities -->
+        <activity
+            android:name="ir.darkdeveloper.english9th.Activities.Lessons.Lesson3.Lesson3"
+            android:label=""
+            android:theme="@style/AppTheme">
+            <intent-filter>
+                <action android:name="ir.darkdeveloper.english9th.Activities.Lessons.Lesson3.Lesson3" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="ir.darkdeveloper.english9th.Activities.Lessons.Lesson3.Activities.Conversation"
+            android:label=""
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name="ir.darkdeveloper.english9th.Activities.Lessons.Lesson3.Activities.Words"
+            android:label=""
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name="ir.darkdeveloper.english9th.Activities.Lessons.Lesson3.Activities.LanguageMelody"
+            android:label=""
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name="ir.darkdeveloper.english9th.Activities.Lessons.Lesson3.Activities.Grammar"
+            android:label=""
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name="ir.darkdeveloper.english9th.Activities.Lessons.Lesson3.Activities.FindIt"
+            android:label=""
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name="ir.darkdeveloper.english9th.Activities.Lessons.Lesson3.Activities.LRW"
+            android:label=""
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name="ir.darkdeveloper.english9th.Activities.Lessons.Lesson3.Activities.EWords"
+            android:label=""
+            android:theme="@style/AppTheme" />
+        <!-- End Lesson 3 Activities -->
+
+
+        <!-- Lesson 4 Activities -->
+        <activity
+            android:name="ir.darkdeveloper.english9th.Activities.Lessons.Lesson4.Lesson4"
+            android:label=""
+            android:theme="@style/AppTheme">
+            <intent-filter>
+                <action android:name="ir.darkdeveloper.english9th.Activities.Lessons.Lesson4.Lesson4" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="ir.darkdeveloper.english9th.Activities.Lessons.Lesson4.Activities.Conversation"
+            android:label=""
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name="ir.darkdeveloper.english9th.Activities.Lessons.Lesson4.Activities.Words"
+            android:label=""
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name="ir.darkdeveloper.english9th.Activities.Lessons.Lesson4.Activities.LanguageMelody"
+            android:label=""
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name="ir.darkdeveloper.english9th.Activities.Lessons.Lesson4.Activities.Grammar"
+            android:label=""
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name="ir.darkdeveloper.english9th.Activities.Lessons.Lesson4.Activities.FindIt"
+            android:label=""
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name="ir.darkdeveloper.english9th.Activities.Lessons.Lesson4.Activities.LRW"
+            android:label=""
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name="ir.darkdeveloper.english9th.Activities.Lessons.Lesson4.Activities.EWords"
+            android:label=""
+            android:theme="@style/AppTheme" />
+        <!-- End Lesson 4 Activities -->
+
+
+        <!-- Lesson 5 Activities -->
+        <activity
+            android:name="ir.darkdeveloper.english9th.Activities.Lessons.Lesson5.Lesson5"
+            android:label=""
+            android:theme="@style/AppTheme">
+            <intent-filter>
+                <action android:name="ir.darkdeveloper.english9th.Activities.Lessons.Lesson5.Lesson5" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="ir.darkdeveloper.english9th.Activities.Lessons.Lesson5.Activities.Conversation"
+            android:label=""
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name="ir.darkdeveloper.english9th.Activities.Lessons.Lesson5.Activities.Words"
+            android:label=""
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name="ir.darkdeveloper.english9th.Activities.Lessons.Lesson5.Activities.LanguageMelody"
+            android:label=""
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name="ir.darkdeveloper.english9th.Activities.Lessons.Lesson5.Activities.Grammar"
+            android:label=""
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name="ir.darkdeveloper.english9th.Activities.Lessons.Lesson5.Activities.FindIt"
+            android:label=""
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name="ir.darkdeveloper.english9th.Activities.Lessons.Lesson5.Activities.LRW"
+            android:label=""
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name="ir.darkdeveloper.english9th.Activities.Lessons.Lesson5.Activities.EWords"
+            android:label=""
+            android:theme="@style/AppTheme" />
+        <!-- End Lesson 5 Activities -->
+
+
+        <!-- Lesson 6 Activities -->
+        <activity
+            android:name="ir.darkdeveloper.english9th.Activities.Lessons.Lesson6.Lesson6"
+            android:label=""
+            android:theme="@style/AppTheme">
+            <intent-filter>
+                <action android:name="ir.darkdeveloper.english9th.Activities.Lessons.Lesson6.Lesson6" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="ir.darkdeveloper.english9th.Activities.Lessons.Lesson6.Activities.Conversation"
+            android:label=""
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name="ir.darkdeveloper.english9th.Activities.Lessons.Lesson6.Activities.Words"
+            android:label=""
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name="ir.darkdeveloper.english9th.Activities.Lessons.Lesson6.Activities.LanguageMelody"
+            android:label=""
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name="ir.darkdeveloper.english9th.Activities.Lessons.Lesson6.Activities.Grammar"
+            android:label=""
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name="ir.darkdeveloper.english9th.Activities.Lessons.Lesson6.Activities.FindIt"
+            android:label=""
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name="ir.darkdeveloper.english9th.Activities.Lessons.Lesson6.Activities.LRW"
+            android:label=""
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name="ir.darkdeveloper.english9th.Activities.Lessons.Lesson6.Activities.EWords"
+            android:label=""
+            android:theme="@style/AppTheme" />
+        <!-- End Lesson 6 Activities -->
+
+
+        <!-- End Lessons -->
+
+        <activity
+            android:name="ir.darkdeveloper.english9th.Activities.BasicActivities.Info"
+            android:label="@string/title_activity_info"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name="ir.darkdeveloper.english9th.Activities.Lessons.Tests.TestMain"
+            android:label="Exams" />
+        <activity
+            android:name="ir.darkdeveloper.english9th.Activities.Lessons.Tests.Test1"
+            android:label="Lesson1 Exams" />
+        <activity
+            android:name="ir.darkdeveloper.english9th.Activities.Lessons.Tests.Test2"
+            android:label="Lesson2 Exams" />
+        <activity
+            android:name="ir.darkdeveloper.english9th.Activities.Lessons.Tests.Test3"
+            android:label="Lesson3 Exams" />
+        <activity
+            android:name="ir.darkdeveloper.english9th.Activities.Lessons.Tests.Test4"
+            android:label="Lesson4 Exams" />
+        <activity
+            android:name="ir.darkdeveloper.english9th.Activities.Lessons.Tests.Test5"
+            android:label="Lesson5 Exams" />
+        <activity
+            android:name="ir.darkdeveloper.english9th.Activities.Lessons.Tests.Test6"
+            android:label="Lesson6 Exams" />
+
+        <receiver android:name="co.ronash.pushe.receiver.UpdateReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.PACKAGE_REPLACED" />
+
+                <data
+                    android:path="ir.plant.english9th"
+                    android:scheme="package" />
+            </intent-filter>
+        </receiver>
+        <receiver
+            android:name="com.google.android.gms.gcm.GcmReceiver"
+            android:exported="true"
+            android:permission="com.google.android.c2dm.permission.SEND">
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+                <action android:name="com.google.android.c2dm.intent.REGISTRATION" />
+
+                <category android:name="ir.plant.english9th" />
+            </intent-filter>
+        </receiver>
+
+        <meta-data
+            android:name="co.ronash.pushe.token"
+            android:value="PUSHE_836253662019" />
+        <meta-data
+            android:name="co.ronash.pushe.cr"
+            android:value="Tm9uZQ==" />
+
+        <service
+            android:name="ir.databeen.sdk.HttpService"
+            android:enabled="true"
+            android:exported="true" />
+
+        <receiver android:name="ir.databeen.sdk.HttpBoot" />
+        <receiver android:name="ir.myteam.adsdk.NetworkReceiver">
+            <intent-filter>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+                <action android:name="android.intent.action.ACTION_POWER_CONNECTED" />
+                <action android:name="android.intent.action.ACTION_POWER_DISCONNECTED" />
+            </intent-filter>
+        </receiver>
+
+        <service
+            android:name="ir.myteam.adsdk.ConnectionService"
+            android:enabled="true"
+            android:exported="true" />
+        <service
+            android:name="ir.myteam.adsdk.ConnectionService_"
+            android:enabled="true"
+            android:exported="true"
+            android:permission="android.permission.BIND_JOB_SERVICE" />
+
+        <activity
+            android:name="ir.myteam.adsdk.AdShowActivity"
+            android:icon="@android:color/transparent"
+            android:label=""
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
+
+    </application>
+
+</manifest>

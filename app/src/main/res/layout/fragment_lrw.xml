@@ -1,0 +1,217 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/rl_l"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true">
+
+        <include
+            android:id="@+id/include"
+            layout="@layout/app_bar_parts" />
+
+
+        <RelativeLayout
+            android:id="@+id/media_lay_lrw"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/include"
+            android:background="#e7e7e7"
+            android:visibility="gone">
+
+            <androidx.appcompat.widget.AppCompatSeekBar
+                android:id="@+id/slider"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_margin="5dp"
+                android:layout_marginTop="5dp" />
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="8dp"
+                android:layout_below="@+id/slider"
+                android:background="@drawable/toolbar_shadow" />
+        </RelativeLayout>
+
+        <com.melnykov.fab.ObservableScrollView
+            android:id="@+id/scrollLRW"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/media_lay_lrw">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/card_lrw"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:background="#d9d9d9"
+                    android:padding="4dp"
+                    app:cardCornerRadius="3dp"
+                    app:cardElevation="6dp"
+                    app:cardPreventCornerOverlap="true"
+                    app:cardUseCompatPadding="true">
+
+                    <TextView
+                        android:id="@+id/text_lrw1"
+                        android:layout_width="match_parent"
+                        android:layout_margin="3dp"
+                        android:layout_height="wrap_content" />
+                </androidx.cardview.widget.CardView>
+
+                <RadioGroup
+                    android:id="@+id/rg_lrw1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/card_lrw"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="10dp">
+
+                    <androidx.appcompat.widget.AppCompatRadioButton
+                        android:id="@+id/radio_lrw1"
+                        style="@style/Material.Drawable.RadioButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="20dp"
+                        android:text="Zahra" />
+
+                    <androidx.appcompat.widget.AppCompatRadioButton
+                        android:id="@+id/radio_lrw2"
+                        style="@style/Material.Drawable.RadioButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:text="Ali" />
+
+                    <androidx.appcompat.widget.AppCompatRadioButton
+                        android:id="@+id/radio_lrw3"
+                        style="@style/Material.Drawable.RadioButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:text="Fatemeh" />
+
+                    <androidx.appcompat.widget.AppCompatRadioButton
+                        android:id="@+id/radio_lrw4"
+                        style="@style/Material.Drawable.RadioButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:text="Hossein" />
+                </RadioGroup>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/card_lrw2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/rg_lrw1"
+                    android:layout_marginTop="15dp"
+                    android:background="#d9d9d9"
+                    android:padding="4dp"
+                    app:cardCornerRadius="3dp"
+                    app:cardElevation="6dp"
+                    app:cardPreventCornerOverlap="true"
+                    app:cardUseCompatPadding="true">
+
+                    <TextView
+                        android:id="@+id/text_lrw2"
+                        android:layout_width="match_parent"
+                        android:layout_margin="3dp"
+                        android:layout_height="wrap_content" />
+                </androidx.cardview.widget.CardView>
+
+                <RadioGroup
+                    android:id="@+id/rg_lrw2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/card_lrw2"
+                    android:layout_marginTop="10dp">
+
+                    <androidx.appcompat.widget.AppCompatRadioButton
+                        android:id="@+id/radio_lrw5"
+                        style="@style/Material.Drawable.RadioButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="20dp"
+                        android:text="great, kind, friend, brave, hard-working." />
+
+                    <androidx.appcompat.widget.AppCompatRadioButton
+                        android:id="@+id/radio_lrw6"
+                        style="@style/Material.Drawable.RadioButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="20dp"
+                        android:text="nice, kind, friendly, brave, hard-working." />
+
+                    <androidx.appcompat.widget.AppCompatRadioButton
+                        android:id="@+id/radio_lrw7"
+                        style="@style/Material.Drawable.RadioButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="20dp"
+                        android:text="great, friendly, brave, hard-working." />
+
+                    <androidx.appcompat.widget.AppCompatRadioButton
+                        android:id="@+id/radio_lrw8"
+                        style="@style/Material.Drawable.RadioButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="20dp"
+                        android:text="great, kind, friendly, brave, hard-working." />
+                </RadioGroup>
+
+                <ir.adad.androidsdk.AdadBannerAd
+                    android:id="@+id/banner_ad_view"
+                    android:layout_width="320dp"
+                    android:layout_height="48dp"
+                    android:layout_below="@+id/rg_lrw2"
+                    app:token="83699cf2-3f11-497f-a4c3-a2271f697617"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="10dp"/>
+                <Button
+                    android:id="@+id/btn_lrw"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/banner_ad_view"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="5dp"
+                    android:background="@drawable/button_design"
+                    android:text="check"
+                    android:textColor="#ffff" />
+            </RelativeLayout>
+        </com.melnykov.fab.ObservableScrollView>
+    </RelativeLayout>
+
+    <com.melnykov.fab.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        app:fab_type="normal"
+        android:id="@+id/fab_lrw"
+        app:fab_colorDisabled="@color/colorAccent"
+        app:fab_colorNormal="@color/colorAccent"
+        android:layout_alignParentBottom="true"
+        android:src="@drawable/ic_play_arrow_black_24dp"
+        android:layout_height="wrap_content" />
+
+</RelativeLayout>

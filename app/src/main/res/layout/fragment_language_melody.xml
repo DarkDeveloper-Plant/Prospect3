@@ -1,0 +1,76 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="ir.darkdeveloper.english9th.Activities.Lessons.Lesson1.Activities.LanguageMelody">
+
+    <include
+        android:id="@+id/include"
+        layout="@layout/app_bar_parts" />
+
+    <RelativeLayout
+        android:id="@+id/media_lay_lm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/include"
+        android:background="#e7e7e7">
+
+        <androidx.appcompat.widget.AppCompatSeekBar
+            android:id="@+id/slider"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="5dp"
+            android:layout_marginTop="5dp" />
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="8dp"
+            android:layout_below="@+id/slider"
+            android:background="@drawable/toolbar_shadow" />
+    </RelativeLayout>
+
+    <com.melnykov.fab.ObservableScrollView
+        android:id="@+id/scrollLan"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/media_lay_lm">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_lm"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="#d9d9d9"
+            android:padding="4dp"
+            app:cardCornerRadius="3dp"
+            app:cardElevation="6dp"
+            app:cardPreventCornerOverlap="true"
+            app:cardUseCompatPadding="true">
+
+            <TextView
+                android:id="@+id/textL"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="3dp" />
+        </androidx.cardview.widget.CardView>
+    </com.melnykov.fab.ObservableScrollView>
+
+    <com.melnykov.fab.FloatingActionButton
+        android:id="@+id/fab_lan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="10dp"
+        android:src="@drawable/ic_play_arrow_black_24dp"
+        app:fab_colorDisabled="@color/colorAccent"
+        app:fab_colorNormal="@color/colorAccent"
+        app:fab_type="normal" />
+</RelativeLayout>
