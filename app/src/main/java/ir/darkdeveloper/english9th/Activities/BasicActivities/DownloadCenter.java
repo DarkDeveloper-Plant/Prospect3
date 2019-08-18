@@ -26,6 +26,8 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.drawerlayout.widget.DrawerLayout;
+
 import ir.darkdeveloper.english9th.Activities.BasicActivities.CrashHandler.CrashHandler;
 import ir.darkdeveloper.english9th.Activities.BasicActivities.CrashHandler.CrashHandling;
 import ir.mahdi.mzip.zip.ZipArchive;
@@ -106,7 +108,7 @@ public class DownloadCenter extends AppCompatActivity {
                         long progressPercent = progress.currentBytes * 100 / progress.totalBytes;
                         progressView.setProgress((int) progressPercent);
                         progressView.setSecondaryProgress((int) progress.currentBytes + 10);
-                        btnDownload.setText("Downloading " + String.valueOf((int) progressPercent) + "%");
+                        btnDownload.setText("Downloading " + (int) progressPercent + "%");
                     })
 
                     .start(new OnDownloadListener() {
@@ -203,6 +205,10 @@ public class DownloadCenter extends AppCompatActivity {
         btnDownload.setVisibility(View.VISIBLE);
         zipFile = new File(PATH + "audio.zip");
         audioExists = new File(PATH + "audio");
+        SharedPreferences prAd = getSharedPreferences("ad", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editorAd = prAd.edit();
+        editorAd.putBoolean("isAdOpen", true);
+        editorAd.apply();
     }
 
 

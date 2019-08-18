@@ -113,20 +113,11 @@
 
                 </androidx.cardview.widget.CardView>
 
-                <ir.adad.androidsdk.AdadBannerAd
-                    android:id="@+id/banner_ad_view"
-                    android:layout_width="320dp"
-                    android:layout_height="48dp"
-                    android:layout_below="@+id/c_p_1"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="10dp"
-                    app:token="83699cf2-3f11-497f-a4c3-a2271f697617" />
                 <TextView
                     android:id="@+id/titlePra2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/banner_ad_view"
+                    android:layout_below="@+id/c_p_1"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="5dp"
                     android:layout_marginBottom="3dp"

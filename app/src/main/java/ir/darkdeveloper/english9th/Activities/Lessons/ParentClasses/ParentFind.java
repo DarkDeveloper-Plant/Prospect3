@@ -193,10 +193,36 @@ public class ParentFind {
      * Before invoking this function, invoke initialize() method
      */
     public void sets() {
+        if (cc == 1) {
+            txtHint.setTextColor(Color.BLACK);
+            editText.setTextColor(Color.BLACK);
+            editText2.setTextColor(Color.BLACK);
+            textView.setTextColor(Color.BLACK);
+        } else if (cc == 2) {
+            txtHint.setTextColor(Color.WHITE);
+            editText.setTextColor(Color.WHITE);
+            editText2.setTextColor(Color.WHITE);
+            textView.setTextColor(Color.WHITE);
+        } else if (cc == 3) {
+            txtHint.setTextColor(Color.GRAY);
+            editText.setTextColor(Color.GRAY);
+            editText2.setTextColor(Color.GRAY);
+            textView.setTextColor(Color.GRAY);
+        } else if (cc == 4) {
+            textView.setTextColor(Color.argb(255, 255, 121, 18));
+            txtHint.setTextColor(Color.argb(255, 255, 121, 18));
+            editText.setTextColor(Color.argb(255, 255, 121, 18));
+            editText2.setTextColor(Color.argb(255, 255, 121, 18));
+        }
+
         if (cs == 5) {
             cardView.setCardBackgroundColor(context.getResources().getColor(R.color.dark_card));
             textView.setTextColor(Color.WHITE);
             scrollView.setBackgroundColor(context.getResources().getColor(R.color.dark));
+            txtHint.setTextColor(Color.WHITE);
+            editText.setTextColor(Color.WHITE);
+            editText2.setTextColor(Color.WHITE);
+            textView.setTextColor(Color.WHITE);
             if (cc == 4) {
                 textView.setTextColor(Color.argb(255, 255, 121, 18));
                 txtHint.setTextColor(Color.argb(255, 255, 121, 18));
@@ -231,27 +257,7 @@ public class ParentFind {
         textView.setLineSpacing(45, value2);
         textView.setTextSize(value);
         txtHint.setTextSize(value);
-        if (cc == 1) {
-            textView.setTextColor(Color.BLACK);
-            txtHint.setTextColor(Color.BLACK);
-            editText.setTextColor(Color.BLACK);
-            editText2.setTextColor(Color.BLACK);
-        } else if (cc == 2) {
-            textView.setTextColor(Color.WHITE);
-            txtHint.setTextColor(Color.WHITE);
-            editText.setTextColor(Color.WHITE);
-            editText2.setTextColor(Color.WHITE);
-        } else if (cc == 3) {
-            textView.setTextColor(Color.GRAY);
-            txtHint.setTextColor(Color.GRAY);
-            editText.setTextColor(Color.GRAY);
-            editText2.setTextColor(Color.GRAY);
-        } else if (cc == 4) {
-            textView.setTextColor(Color.argb(255, 255, 121, 18));
-            txtHint.setTextColor(Color.argb(255, 255, 121, 18));
-            editText.setTextColor(Color.argb(255, 255, 121, 18));
-            editText2.setTextColor(Color.argb(255, 255, 121, 18));
-        }
+
     }
 
     /**

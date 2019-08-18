@@ -6,8 +6,6 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -39,7 +37,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import co.ronash.pushe.Pushe;
-import ir.adad.androidsdk.Adad;
+import ir.darkdeveloper.english9th.Activities.AdBase;
 import ir.darkdeveloper.english9th.Activities.BasicActivities.CrashHandler.CrashHandler;
 import ir.darkdeveloper.english9th.Activities.BasicActivities.CrashHandler.CrashHandling;
 import ir.darkdeveloper.english9th.Activities.Lessons.Tests.TestMain;
@@ -47,8 +45,9 @@ import ir.darkdeveloper.english9th.Adapters.RecyclerAdapters.AdapterRecyclerMain
 import ir.darkdeveloper.english9th.Contacts.ContactRecyclerMain;
 import ir.darkdeveloper.english9th.Data.DataRecyclerMain;
 import ir.databeen.sdk.Databeen;
-import ir.myteam.adsdk.AdCommon;
 import ir.plant.english9th.R;
+import ir.tapsell.sdk.Tapsell;
+
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -60,16 +59,19 @@ public class MainActivity extends AppCompatActivity
     public static final String desPath = Environment.getExternalStorageDirectory()
             + "/Android/data/ir.plant.english9th/";
     private NavigationView navigationView;
-    private SharedPreferences ps, rp;
-    private int cs, ad;
-    public static final String VERSION_NAME = "5.98324";
+    private SharedPreferences ps;
+    private int cs;
+    public static final String VERSION_NAME = "5.98527";
+    private AdBase adBase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         try {
-            AdadInit();
+            Tapsell.initialize(getApplicationContext()
+                    , "abgaphnhtkbefdfgepcogsljmsiaoehhapnrcncelkeeksolshcbdjtfotrinecabopcfo");
+
             Pushe.initialize(this, true);
             setContentView(R.layout.activity_main);
             intro();
@@ -98,8 +100,6 @@ public class MainActivity extends AppCompatActivity
 
     private void intro() {
         ps = getSharedPreferences("permission", Context.MODE_PRIVATE);
-        SharedPreferences ads = getSharedPreferences("ads?", Context.MODE_PRIVATE);
-        ad = ads.getInt("ads??", 0);
 
         grantPermission();
 
@@ -111,15 +111,8 @@ public class MainActivity extends AppCompatActivity
             InitializeSQLCipher();
             new AlertDialog.Builder(MainActivity.this)
                     .setTitle("تغییرات نسخه جدید: " + VERSION_NAME)
-                    .setMessage("- اضافه شدن ترجمه برای  language melody\n" +
-                            "\n" +
-                            "- اضافه شدن ترجمه برای find it\n" +
-                            "\n" +
-                            "- اضافه شدن قابلیت ترجمه آنی برای find it  و language melody\n" +
-                            "\n" +
-                            "- ساخته شدن کانال تلگرام و پشتیبانی\n" +
-                            "\n" +
-                            "- حل مشکلات گزارش شده و مقاوم شدن در برابر بسته شدن ناگهانی")
+                    .setMessage(getEmoji(0x2705) + " حل مشکل ظاهری بخش های conversation و find it.\n" +
+                            getEmoji(0x2705) + " برداشته شدن تبلیغات اجباری و اضافه شدن تبلیغات اختیاری")
                     .setPositiveButton("کانال سروش", (dialogInterface, i) -> {
                         Intent intent = new Intent(Intent.ACTION_VIEW);
                         intent.setData(Uri.parse("http://sapp.ir/plantdg"));
@@ -141,8 +134,7 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onPermissionGranted() {
                 InitializeSQLCipher();
-                Databeen.init(MainActivity.this,
-                        "945185f355954f7fb6909b9742fd42cd", "Bazaar");
+                Databeen.init(MainActivity.this, "945185f355954f7fb6909b9742fd42cd", "Bazaar");
                 editor.putBoolean("granted?", true);
                 editor.apply();
             }
@@ -167,18 +159,9 @@ public class MainActivity extends AppCompatActivity
                         " در قسمت نرم افزار ها به نرم افزار دسترسی بدهید " +
                         "یا نرم افزار را دوباره اجرا کنید تا دسترسی ها را دوباره ببینید.")
                 .setPermissions(Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                        Manifest.permission.READ_EXTERNAL_STORAGE,
-                        Manifest.permission.READ_PHONE_STATE)
+                        Manifest.permission.READ_EXTERNAL_STORAGE)
                 .check();
 
-
-        if (ps.getBoolean("granted?", false)) {
-            if (ad == 0) {
-                AdCommon.init(MainActivity.this, "WBCjnQuCGQ", false, true);
-            } else if (ad == 1) {
-                AdCommon.init(MainActivity.this, "WBCjnQuCGQ", false, false);
-            }
-        }
 
     }
 
@@ -222,21 +205,6 @@ public class MainActivity extends AppCompatActivity
     }
 
 
-    private void AdadInit() {
-        ConnectivityManager manager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo networkInfo = manager.getActiveNetworkInfo();
-        if (networkInfo != null && networkInfo.isConnected()) {
-            Adad.initialize(getApplicationContext(), "a93e05398be349128a04409ceb282260");
-            Adad.prepareFullscreenBannerAd(getApplicationContext()
-                    , "60BA5D43-F0CD-41F8-925B-EFAE8CB01F00");
-            if (Adad.isFullscreenBannerAdReady()) {
-                Adad.showFullscreenBannerAd(MainActivity.this);
-            }
-        }
-
-    }
-
-
     private boolean isFirstTime() {
         SharedPreferences preferences = getPreferences(MODE_PRIVATE);
         boolean ranBefore = preferences.getBoolean("RanBefore", false);
@@ -256,7 +224,7 @@ public class MainActivity extends AppCompatActivity
         if (actionBar != null) {
             actionBar.setDisplayShowTitleEnabled(false);
         }
-        rp = getSharedPreferences("review", Context.MODE_PRIVATE);
+
         recyclerView = findViewById(R.id.recyclerView1);
         linearLayoutManager = new LinearLayoutManager(MainActivity.this);
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
@@ -273,37 +241,34 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
+        SharedPreferences prAd = getSharedPreferences("ad", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editorAd = prAd.edit();
+        editorAd.putBoolean("isAdOpen", true);
+        editorAd.apply();
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            if (rp.getBoolean("reviewed", true)) {
-
-                new AlertDialog.Builder(MainActivity.this)
-                        .setTitle("نظر به برنامه")
-                        .setMessage("اگر از برنامه خوشتان آمد به آن امتیاز دهید")
-                        .setPositiveButton("5 ستاره میدم", (v, h) -> {
-                            Intent intent = new Intent(Intent.ACTION_EDIT);
-                            intent.setData(Uri.parse("bazaar://details?id=" + "ir.plant.english9th"));
-                            intent.setPackage("com.farsitel.bazaar");
-                            startActivity(intent);
-                            SharedPreferences.Editor edt = rp.edit();
-                            edt.putBoolean("reviewed", false);
-                            edt.apply();
-                        })
-                        .setNegativeButton("فعلا نه", (v, h) -> {
-                            super.onBackPressed();
-                            finish();
-                        }).show();
-            } else {
-                super.onBackPressed();
-                finish();
-            }
-
+            adBase = new AdBase(MainActivity.this);
+            new AlertDialog.Builder(MainActivity.this)
+                    .setTitle("نظر به برنامه")
+                    .setMessage("اگر از برنامه خوشتان آمد به آن امتیاز دهید یا ویدیو زیر را تا اخر ببینید و از ما حمایت کنید(کمتر از یک دقیقه)")
+                    .setPositiveButton("دیدن ویدیو", (v, h) -> adBase.showAd())
+                    .setNegativeButton("5 ستاره میدم", (v, h) -> {
+                        Intent intent = new Intent(Intent.ACTION_EDIT);
+                        intent.setData(Uri.parse("bazaar://details?id=" + "ir.plant.english9th"));
+                        intent.setPackage("com.farsitel.bazaar");
+                        startActivity(intent);
+                    })
+                    .setNeutralButton("فعلا نه", (v, h) -> {
+                        Databeen.setDefineExit();
+                        super.onBackPressed();
+                        finish();
+                    })
+                    .show();
 
         }
     }
 
-    @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
@@ -326,7 +291,6 @@ public class MainActivity extends AppCompatActivity
             }
         } else if (id == R.id.nav_about) {
             startActivity(new Intent(this, Info.class));
-
         } else if (id == R.id.nav_share) {
             Intent i = new Intent(Intent.ACTION_SEND);
             i.setType("text/plain");
@@ -408,22 +372,5 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        Databeen.setAppStart();
-        /*ActivityManager am = (ActivityManager) getSystemService(ACTIVITY_SERVICE);
-        List<ActivityManager.RunningTaskInfo> tasks = am.getRunningTasks(1);
-        ActivityManager.RunningTaskInfo task = tasks.get(0); // current task
-        ComponentName rootActivity = task.baseActivity;
-
-
-        String currentPackageName = rootActivity.getPackageName();
-        if (currentPackageName.equals("ir.plant.english9th")) {
-            Toast.makeText(this, "onStart", Toast.LENGTH_SHORT).show();
-            AdCommon.init(this, "WBCjnQuCGQ", false, true);
-        }*/
-    }
 
 }

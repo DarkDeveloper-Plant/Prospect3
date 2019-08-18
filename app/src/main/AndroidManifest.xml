@@ -13,12 +13,8 @@
         android:name="android.permission.READ_EXTERNAL_STORAGE"
         tools:node="merge" />
     <uses-permission
-        android:name="android.permission.READ_PHONE_STATE"
-        tools:node="merge" />
-    <uses-permission
         android:name="android.permission.ACCESS_COARSE_LOCATION"
         tools:node="remove" />
-    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <permission
@@ -382,36 +378,16 @@
             android:name="co.ronash.pushe.cr"
             android:value="Tm9uZQ==" />
 
-        <service
-            android:name="ir.databeen.sdk.HttpService"
-            android:enabled="true"
-            android:exported="true" />
-
-        <receiver android:name="ir.databeen.sdk.HttpBoot" />
-        <receiver android:name="ir.myteam.adsdk.NetworkReceiver">
-            <intent-filter>
-                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
-                <action android:name="android.intent.action.ACTION_POWER_CONNECTED" />
-                <action android:name="android.intent.action.ACTION_POWER_DISCONNECTED" />
-            </intent-filter>
-        </receiver>
-
-        <service
-            android:name="ir.myteam.adsdk.ConnectionService"
-            android:enabled="true"
-            android:exported="true" />
-        <service
-            android:name="ir.myteam.adsdk.ConnectionService_"
-            android:enabled="true"
+        <service android:name="ir.databeen.sdk.HttpService"
             android:exported="true"
-            android:permission="android.permission.BIND_JOB_SERVICE" />
+            android:enabled="true"
+            />
+        <receiver android:name="ir.databeen.sdk.HttpBoot"/>
 
-        <activity
-            android:name="ir.myteam.adsdk.AdShowActivity"
-            android:icon="@android:color/transparent"
-            android:label=""
-            android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
+        <activity android:name="ir.tapsell.sdk.TapsellAdActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize" >
+        </activity>
+
 
     </application>
 

@@ -29,7 +29,6 @@ import ir.darkdeveloper.english9th.Adapters.RecyclerAdapters.Lessons.AdapterLess
 import ir.darkdeveloper.english9th.Contacts.ContactLessons;
 import ir.darkdeveloper.english9th.Data.DataBaseStructure;
 import ir.darkdeveloper.english9th.Data.Lessons.DataRecyclerLess;
-import ir.myteam.adsdk.AdCommon;
 import ir.plant.english9th.R;
 
 
@@ -58,7 +57,6 @@ public class Lesson1 extends AppCompatActivity {
             setContentView(R.layout.activity_lesson);
             toolbar = findViewById(R.id.toolbar);
             setSupportActionBar(toolbar);
-            AdCommon.init(this, "WBCjnQuCGQ", false, true);
             Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
             ini();
             Themes();

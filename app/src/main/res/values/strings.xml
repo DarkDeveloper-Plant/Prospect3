@@ -31,6 +31,7 @@
     <string name="id_plantdg">ابتدا برنامه را از تسک ببنید و دوباره اجرا کنید، اگر مشکل پابرجا بود به آی دی زیر این فایل را بفرستید:
         \n
         id: @plantdg_ad</string>
+    <string name="todo">TODO</string>
 
 
 </resources>

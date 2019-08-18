@@ -38,15 +38,7 @@
                     android:layout_gravity="center" />
 
             </androidx.cardview.widget.CardView>
-            <ir.adad.androidsdk.AdadBannerAd
-                android:id="@+id/banner_ad_view"
-                android:layout_width="320dp"
-                android:layout_height="48dp"
-                android:layout_below="@+id/card_ewords"
-                app:token="83699cf2-3f11-497f-a4c3-a2271f697617"
-                android:layout_centerHorizontal="true"
-                android:layout_marginBottom="10dp"
-                android:layout_marginTop="10dp"/>
+
         </RelativeLayout>
     </com.melnykov.fab.ObservableScrollView>
 </RelativeLayout>

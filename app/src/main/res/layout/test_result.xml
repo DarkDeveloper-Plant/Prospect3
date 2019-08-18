@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 <LinearLayout
     android:id="@+id/back_result"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content">
     <TextView
         android:layout_width="match_parent"
@@ -16,7 +17,8 @@
         android:textSize="60sp"
         android:id="@+id/tv1_result"
         android:textColor="#a9df90"
-        android:text="Good"/>
+        android:text="Good"
+        tools:ignore="HardcodedText" />
     <TextView
         android:layout_width="match_parent"
         android:id="@+id/tv2_result"

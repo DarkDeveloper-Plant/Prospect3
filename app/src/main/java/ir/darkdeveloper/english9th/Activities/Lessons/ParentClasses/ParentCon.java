@@ -108,35 +108,7 @@ public class ParentCon {
         text_con.setLineSpacing(45, value2);
         text_p1.setLineSpacing(45, value2);
         text_p2.setLineSpacing(45, value2);
-        if (cc == 1) {
-            text_con.setTextColor(Color.BLACK);
-            text_p1.setTextColor(Color.BLACK);
-            text_p2.setTextColor(Color.BLACK);
-            titleCon.setTextColor(Color.BLACK);
-            titlePra1.setTextColor(Color.BLACK);
-            titlePra2.setTextColor(Color.BLACK);
-        } else if (cc == 2) {
-            text_con.setTextColor(Color.WHITE);
-            text_p1.setTextColor(Color.WHITE);
-            text_p2.setTextColor(Color.WHITE);
-            titleCon.setTextColor(Color.WHITE);
-            titlePra1.setTextColor(Color.WHITE);
-            titlePra2.setTextColor(Color.WHITE);
-        } else if (cc == 3) {
-            text_con.setTextColor(Color.GRAY);
-            text_p1.setTextColor(Color.GRAY);
-            text_p2.setTextColor(Color.GRAY);
-            titleCon.setTextColor(Color.BLACK);
-            titlePra1.setTextColor(Color.BLACK);
-            titlePra2.setTextColor(Color.BLACK);
-        } else if (cc == 4) {
-            text_con.setTextColor(Color.argb(255, 255, 121, 18));
-            text_p1.setTextColor(Color.argb(255, 255, 121, 18));
-            text_p2.setTextColor(Color.argb(255, 255, 121, 18));
-            titleCon.setTextColor(Color.WHITE);
-            titlePra1.setTextColor(Color.WHITE);
-            titlePra2.setTextColor(Color.WHITE);
-        }
+
 
     }
 
@@ -176,6 +148,35 @@ public class ParentCon {
      */
     public void sets() {
         relativeLayout2.setBackgroundColor(context.getResources().getColor(R.color.light));
+        if (cc == 1){
+            text_con.setTextColor(Color.BLACK);
+            text_p1.setTextColor(Color.BLACK);
+            text_p2.setTextColor(Color.BLACK);
+            titleCon.setTextColor(Color.BLACK);
+            titlePra1.setTextColor(Color.BLACK);
+            titlePra2.setTextColor(Color.BLACK);
+        } else if (cc == 2) {
+            text_con.setTextColor(Color.WHITE);
+            text_p1.setTextColor(Color.WHITE);
+            text_p2.setTextColor(Color.WHITE);
+            titleCon.setTextColor(Color.WHITE);
+            titlePra1.setTextColor(Color.WHITE);
+            titlePra2.setTextColor(Color.WHITE);
+        } else if (cc == 3) {
+            text_con.setTextColor(Color.GRAY);
+            text_p1.setTextColor(Color.GRAY);
+            text_p2.setTextColor(Color.GRAY);
+            titleCon.setTextColor(Color.GRAY);
+            titlePra1.setTextColor(Color.GRAY);
+            titlePra2.setTextColor(Color.GRAY);
+        } else if (cc == 4) {
+            text_con.setTextColor(Color.argb(255, 255, 121, 18));
+            text_p1.setTextColor(Color.argb(255, 255, 121, 18));
+            text_p2.setTextColor(Color.argb(255, 255, 121, 18));
+            titleCon.setTextColor(Color.BLACK);
+            titlePra1.setTextColor(Color.BLACK);
+            titlePra2.setTextColor(Color.BLACK);
+        }
         if (cs == 5) {
             cardView1.setCardBackgroundColor(context.getResources().getColor(R.color.dark_card));
             cardView2.setCardBackgroundColor(context.getResources().getColor(R.color.dark_card));

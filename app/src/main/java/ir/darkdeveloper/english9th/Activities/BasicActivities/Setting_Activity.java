@@ -20,7 +20,6 @@ import java.util.Objects;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SwitchCompat;
 import androidx.appcompat.widget.Toolbar;
-import at.markushi.ui.CircleButton;
 import ir.darkdeveloper.english9th.Activities.BasicActivities.CrashHandler.CrashHandler;
 import ir.plant.english9th.R;
 
@@ -29,17 +28,15 @@ public class Setting_Activity extends AppCompatActivity {
     public static Toolbar toolbar_sett;
     TextView sample, slider1_text, slider2_text;
     Slider slider, slider2;
-    CircleButton black, white, gray;
+    Button black, white, gray;
     int scolor1, scolor2, i_tran, save1, save1_1, ct, cc, cs, newVal, value1, ad;
     float value2;
-    private boolean togAd = true;
-    SharedPreferences.Editor editor1, editor2, editor3, editor_save1, adsE;
+    SharedPreferences.Editor editor1, editor2, editor3, editor_save1;
     SharedPreferences preferences1, preferences2, color1,
-            color2, tran, save_shared1, sh_text, colorb1, colorb2, ads;
+            color2, tran, save_shared1, sh_text, colorb1, colorb2;
     Button fa, en;
     SwitchCompat theme;
 
-    Button toggleAd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -139,17 +136,12 @@ public class Setting_Activity extends AppCompatActivity {
         gray = findViewById(R.id.btn_gray);
         theme = findViewById(R.id.theme_switch);
         theme.setChecked(false);
-        toggleAd = findViewById(R.id.btn_ad);
         SharedPreferences preferences = getSharedPreferences("checked", Context.MODE_PRIVATE);
         save1_1 = preferences.getInt("nchecked", 1);
 
         color1 = getSharedPreferences("color1", 0);
         editor1 = color1.edit();
         scolor1 = color1.getInt("color2", 0);
-
-        ads = getSharedPreferences("ads?", 0);
-        adsE = ads.edit();
-        ad = ads.getInt("ads??", 0);
 
         color2 = getSharedPreferences("color?", MODE_PRIVATE);
         editor2 = color2.edit();
@@ -214,32 +206,6 @@ public class Setting_Activity extends AppCompatActivity {
             editor1.apply();
         });
 
-        if (ad == 0){
-            togAd = false;
-
-        }else if (ad == 1){
-            togAd = true;
-        }
-        toggleAd.setOnClickListener(v -> {
-            if (togAd) {
-                adsE.putInt("ads??", 0);
-                adsE.apply();
-                Toast.makeText(this, "تبلیغات روشن است.", Toast.LENGTH_SHORT).show();
-                togAd = false;
-            }else {
-                new AlertDialog.Builder(Setting_Activity.this)
-                        .setTitle("راهنما")
-                        .setMessage("با روشن گذاشتن تبلیغات پاپ آپ که هر 30 یا 48 ساعت نمایش داده می شود، از برنامه نویسان ایرانی حمایت کنید.")
-                        .setPositiveButton("حمایت نمی کنم", (dialogInterface, i) -> {
-                            adsE.putInt("ads??", 1);
-                            adsE.apply();
-                            Toast.makeText(this, "تبلیغات خاموش است.", Toast.LENGTH_SHORT).show();
-                            togAd = true;
-                        }).setNegativeButton("صرف نظر", (dialog, which) -> {
-                        })
-                        .show();
-            }
-        });
 
 
         white.setOnClickListener(view -> {
@@ -253,7 +219,6 @@ public class Setting_Activity extends AppCompatActivity {
 
         en.setOnClickListener(view -> {
             editor3.putInt("transs", 1);
-
             Toast.makeText(Setting_Activity.this, "Text language is English.", Toast.LENGTH_SHORT).show();
             sample.setText("Example\ntext");
             editor3.apply();
@@ -285,5 +250,12 @@ public class Setting_Activity extends AppCompatActivity {
         });
     }
 
-
+    @Override
+    protected void onStop() {
+        super.onStop();
+        SharedPreferences prAd = getSharedPreferences("ad", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editorAd = prAd.edit();
+        editorAd.putBoolean("isAdOpen", true);
+        editorAd.apply();
+    }
 }

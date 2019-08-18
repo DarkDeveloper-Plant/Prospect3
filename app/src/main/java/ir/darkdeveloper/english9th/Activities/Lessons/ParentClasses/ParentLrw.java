@@ -16,9 +16,12 @@ import android.widget.Toast;
 import com.melnykov.fab.FloatingActionButton;
 import com.melnykov.fab.ObservableScrollView;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.AppCompatRadioButton;
 import androidx.appcompat.widget.AppCompatSeekBar;
 import androidx.cardview.widget.CardView;
+
+import ir.darkdeveloper.english9th.Activities.AdBase;
 import ir.darkdeveloper.english9th.Activities.BasicActivities.AudioInit.AudioL;
 import ir.plant.english9th.R;
 
@@ -215,7 +218,25 @@ public class ParentLrw {
             ((Activity) context).finish();
         });
 
-
+        AdBase adBase = new AdBase(context);
+        SharedPreferences pr = context.getSharedPreferences("ad", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = pr.edit();
+        if (pr.getBoolean("isAdOpen", true)) {
+            new AlertDialog.Builder(context)
+                    .setTitle("حمایت از ما")
+                    .setMessage("اگر از برنامه خوشتان امد میتونید با دیدن تبلیغ زیر قوت قلبی برای ما باشید(کمتر از یک دقیقه)")
+                    .setPositiveButton("تبلیغ", (dialog, which) -> {
+                        adBase.showAd();
+                        editor.putBoolean("isAdOpen", false);
+                        editor.apply();
+                    })
+                    .setNegativeButton("فعلا نه", (d, w) -> {
+                        d.dismiss();
+                        editor.putBoolean("isAdOpen", false);
+                        editor.apply();
+                    })
+                    .show();
+        }
     }
 
 

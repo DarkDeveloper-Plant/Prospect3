@@ -3,16 +3,22 @@ package ir.darkdeveloper.english9th.Activities.Lessons.ParentClasses;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.graphics.Color;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.melnykov.fab.ObservableScrollView;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.cardview.widget.CardView;
+
+import ir.darkdeveloper.english9th.Activities.AdBase;
 import ir.plant.english9th.R;
+import ir.tapsell.sdk.TapsellAd;
 
 public class ParentGram {
 
@@ -43,7 +49,7 @@ public class ParentGram {
         SharedPreferences color1 = context.getSharedPreferences("color1", Context.MODE_PRIVATE);
         cc = color1.getInt("color2", 0);
         SharedPreferences color = context.getSharedPreferences("color?", Context.MODE_PRIVATE);
-        cs = color.getInt("color??",4);
+        cs = color.getInt("color??", 4);
         SharedPreferences sh_text = context.getSharedPreferences("trans", Context.MODE_PRIVATE);
         ct = sh_text.getInt("transs", 1);
         SharedPreferences preferences2 = context.getSharedPreferences("font_margin",
@@ -62,9 +68,9 @@ public class ParentGram {
      * Before invoking this function, invoke initialize() method
      */
     @SuppressLint("SetTextI18n")
-    public void onclick(){
+    public void onclick() {
 
-        toggle.setOnClickListener(v ->{
+        toggle.setOnClickListener(v -> {
             if (state) {
                 textView.setText(textGram);
                 toggle.setText("fa");
@@ -80,6 +86,27 @@ public class ParentGram {
             context.startActivity(new Intent(activity));
             ((Activity) context).finish();
         });
+
+        AdBase adBase = new AdBase(context);
+        SharedPreferences pr = context.getSharedPreferences("ad", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = pr.edit();
+        if (pr.getBoolean("isAdOpen", true)) {
+            new AlertDialog.Builder(context)
+                    .setTitle("حمایت از ما")
+                    .setMessage("اگر از برنامه خوشتان امد میتونید با دیدن تبلیغ زیر قوت قلبی برای ما باشید(کمتر از یک دقیقه)")
+                    .setPositiveButton("تبلیغ", (dialog, which) -> {
+                        adBase.showAd();
+                        editor.putBoolean("isAdOpen", false);
+                        editor.apply();
+                    })
+                    .setNegativeButton("فعلا نه", (d, w) -> {
+                        d.dismiss();
+                        editor.putBoolean("isAdOpen", false);
+                        editor.apply();
+                    })
+                    .show();
+        }
+
     }
 
     /**
@@ -88,10 +115,10 @@ public class ParentGram {
     @SuppressLint("SetTextI18n")
     public void Texts() {
         textView.setText(textGram);
-        if (ct == 2){
+        if (ct == 2) {
             textView.setText(textGramF);
             toggle.setText("en");
-        } else if (ct == 1){
+        } else if (ct == 1) {
             textView.setText(textGram);
             toggle.setText("fa");
         }
@@ -107,16 +134,16 @@ public class ParentGram {
             textView.setTextColor(Color.argb(255, 255, 121, 18));
         }
 
-        if (cs == 5){
+        if (cs == 5) {
             cardView.setCardBackgroundColor(context.getResources().getColor(R.color.dark_card));
             textView.setTextColor(Color.WHITE);
             scrollView.setBackgroundColor(context.getResources().getColor(R.color.dark));
-            if (cc == 4){
-                textView.setTextColor(Color.argb(255,255,121,18));
-            }else {
+            if (cc == 4) {
+                textView.setTextColor(Color.argb(255, 255, 121, 18));
+            } else {
                 textView.setTextColor(Color.WHITE);
             }
-        }else if (cs == 6){
+        } else if (cs == 6) {
             cardView.setCardBackgroundColor(context.getResources().getColor(R.color.light_card));
             scrollView.setBackgroundColor(context.getResources().getColor(R.color.light));
         }
@@ -127,7 +154,7 @@ public class ParentGram {
     /**
      * Before invoking this function, invoke initialize() method
      */
-    public void onBackPressed(){
+    public void onBackPressed() {
         context.startActivity(new Intent(activity));
         ((Activity) context).finish();
     }

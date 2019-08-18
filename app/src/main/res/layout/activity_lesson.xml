@@ -8,7 +8,21 @@
     tools:context="ir.darkdeveloper.english9th.Activities.Lessons.Lesson1.Lesson1">
 
 
-    <include layout="@layout/content_lesson" />
-
+    <RelativeLayout
+        android:id="@+id/content_lesson1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        tools:showIn="@layout/activity_lesson">
+        <include layout="@layout/app_bar_main"
+            android:id="@+id/include"/>
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:id="@+id/recyclerLess"
+            android:layout_below="@+id/include"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_height="match_parent" />
+    </RelativeLayout>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

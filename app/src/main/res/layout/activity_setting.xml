@@ -6,6 +6,192 @@
     android:fitsSystemWindows="true"
     tools:context="ir.darkdeveloper.english9th.Activities.BasicActivities.Setting_Activity">
 
-    <include layout="@layout/content_setting" />
+    <LinearLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/content_setting"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context="ir.darkdeveloper.english9th.Activities.BasicActivities.Setting_Activity">
+        <include layout="@layout/toolbar_setting"/>
+        <ScrollView xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:layout_width="match_parent"
+            android:id="@+id/scrollView_text"
+            android:layout_height="match_parent">
 
+            <RelativeLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/relative_text"
+                android:orientation="vertical"
+                tools:context="ir.darkdeveloper.english9th.Activities.Settings.Fragments.Text">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="10dp"
+                    android:text="Text"
+                    android:gravity="center"
+                    android:textColor="#000"
+                    android:textSize="25sp"
+                    tools:ignore="HardcodedText" />
+
+                <com.rey.material.widget.Slider
+                    android:id="@+id/slider_textSettings"
+                    style="@style/Material.Widget.Slider"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="50dp"
+                    android:gravity="center"
+                    app:sl_discreteMode="true"
+                    app:sl_maxValue="30"
+                    app:sl_minValue="12"
+                    app:sl_secondaryColor="#afafaf"
+                    app:sl_primaryColor="@color/colorPrimary"
+                    app:sl_value="18" />
+
+                <com.rey.material.widget.Slider
+                    android:id="@+id/slider_textSettingsmargin"
+                    style="@style/Material.Widget.Slider"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/slider_textSettings"
+                    android:gravity="center"
+                    app:sl_discreteMode="true"
+                    app:sl_secondaryColor="#afafaf"
+                    app:sl_maxValue="20"
+                    app:sl_minValue="0"
+                    app:sl_primaryColor="@color/colorPrimary"
+                    app:sl_value="0" />
+
+                <Button
+                    android:id="@+id/btn_black"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_below="@+id/slider_textSettingsmargin"
+                    android:layout_marginTop="25dp"
+                    android:layout_toLeftOf="@+id/btn_white"
+                    android:layout_toStartOf="@+id/btn_white"
+                    android:background="@drawable/circle_black"/>
+
+                <Button
+                    android:id="@+id/btn_white"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_below="@+id/slider_textSettingsmargin"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="25dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginStart="8dp"
+                    android:background="@drawable/circle_orange" />
+
+                <Button
+                    android:id="@+id/btn_gray"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_below="@+id/slider_textSettingsmargin"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="25dp"
+                    android:layout_toRightOf="@+id/btn_white"
+                    android:background="@drawable/circle_gray"
+                    android:layout_toEndOf="@+id/btn_white" />
+                <TextView
+                    android:id="@+id/sample"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/btn_white"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="20dp"
+                    android:gravity="center"
+                    android:text="Example\ntext"
+                    android:textSize="18sp"
+                    tools:ignore="HardcodedText" />
+
+                <TextView
+                    android:id="@+id/tt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/sample"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="30dp"
+                    android:text="Themes"
+                    android:textColor="#000"
+                    android:textSize="25sp"
+                    tools:ignore="HardcodedText" />
+
+                <androidx.appcompat.widget.SwitchCompat
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tt"
+                    android:layout_marginTop="10dp"
+                    android:layout_centerHorizontal="true"
+                    android:id="@+id/theme_switch"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Light"
+                    android:textSize="15sp"
+                    android:layout_marginTop="15dp"
+                    android:layout_toLeftOf="@+id/theme_switch"
+                    android:layout_marginRight="10dp"
+                    android:textColor="#000"
+                    android:layout_below="@+id/tt"
+                    tools:ignore="HardcodedText"
+                    android:layout_toStartOf="@+id/theme_switch"
+                    android:layout_marginEnd="10dp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Dark"
+                    android:textSize="15sp"
+                    android:layout_marginTop="15dp"
+                    android:layout_toRightOf="@+id/theme_switch"
+                    android:layout_marginRight="10dp"
+                    android:textColor="#000"
+                    android:layout_below="@+id/tt"
+                    tools:ignore="HardcodedText"
+                    android:layout_toEndOf="@+id/theme_switch"
+                    android:layout_marginEnd="10dp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/theme_switch"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="30dp"
+                    android:id="@+id/textView3"
+                    android:textColor="#000"
+                    android:textSize="25sp"
+                    android:text="Text Language"
+                    tools:ignore="HardcodedText" />
+
+                <Button
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:background="@drawable/button_design"
+                    android:text="fa"
+                    android:textColor="#ffff"
+                    android:id="@+id/btn_persian"
+                    android:layout_below="@+id/textView3"
+                    android:layout_marginTop="10dp"
+                    android:layout_toRightOf="@+id/btn_white"
+                    android:layout_toEndOf="@+id/btn_white"
+                    tools:ignore="HardcodedText" />
+                <Button
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:background="@drawable/button_design"
+                    android:textColor="#ffff"
+                    android:text="en"
+                    android:id="@+id/btn_english"
+                    android:layout_below="@+id/textView3"
+                    android:layout_marginTop="10dp"
+                    android:layout_toLeftOf="@+id/btn_white"
+                    android:layout_toStartOf="@+id/btn_white"
+                    tools:ignore="HardcodedText" />
+
+            </RelativeLayout>
+        </ScrollView>
+    </LinearLayout>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -74,14 +74,6 @@
                 android:textColorHint="#8c8c8c"
                 android:visibility="gone" />
 
-            <ir.adad.androidsdk.AdadBannerAd
-                android:id="@+id/banner_ad_view"
-                android:layout_width="320dp"
-                android:layout_height="48dp"
-                app:token="83699cf2-3f11-497f-a4c3-a2271f697617"
-                android:layout_gravity="center"
-                android:layout_marginBottom="10dp"
-                android:layout_marginTop="10dp"/>
 
             <Button
                 android:id="@+id/btn_findit"
