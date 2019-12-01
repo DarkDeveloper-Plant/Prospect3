@@ -5,8 +5,10 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Handler;
 import android.widget.ImageButton;
-import android.widget.LinearLayout;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.melnykov.fab.FloatingActionButton;
@@ -15,9 +17,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import androidx.appcompat.widget.AppCompatSeekBar;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import ir.darkdeveloper.english9th.Activities.BasicActivities.AudioInit.AudioWords;
+
+import ir.darkdeveloper.english9th.Activities.BasicActivities.AudioInit;
 import ir.darkdeveloper.english9th.Adapters.RecyclerAdapters.AdapterRecyclerWords;
 import ir.darkdeveloper.english9th.Contacts.ContactRecyclerWords;
 import ir.darkdeveloper.english9th.Data.Words.DataRecyclerWords;
@@ -33,18 +37,22 @@ public class ParentWord {
 
     private Context context;
     private List<ContactRecyclerWords> contactRecyclerWordses = new ArrayList<>();
-    private AudioWords audioInit;
+    private AudioInit audioInit;
     private DataRecyclerWords dataRecyclerWords;
-    private String fileName, activity;
+    private String  activity;
     private ImageButton btnBack;
     private RecyclerView recyclerView;
     private int cs, ct;
-    private LinearLayout audioBack;
+    private RelativeLayout audioBack;
+    private FloatingActionButton fabAudio;
+    private TextView toggle_lan;
+    private ImageView imgGuide;
+    private int fileId;
     private boolean isToggled = true;
 
-    private ParentWord(Context context, String fileName, String activity) {
+    private ParentWord(Context context, int fileId, String activity) {
         this.context = context;
-        this.fileName = fileName;
+        this.fileId = fileId;
         this.activity = activity;
     }
 
@@ -52,8 +60,8 @@ public class ParentWord {
      * For Words1
      */
     public ParentWord(Context context, DataRecyclerWords1 dataRecyclerWords1,
-                      String fileName, String activity) {
-        this(context, fileName, activity);
+                      int fileId, String activity) {
+        this(context, fileId, activity);
         this.dataRecyclerWords = dataRecyclerWords1;
     }
 
@@ -61,8 +69,8 @@ public class ParentWord {
      * For Words2
      */
     public ParentWord(Context context, DataRecyclerWords2 dataRecyclerWords2,
-                      String fileName, String activity) {
-        this(context, fileName, activity);
+                      int fileId, String activity) {
+        this(context, fileId, activity);
         this.dataRecyclerWords = dataRecyclerWords2;
     }
 
@@ -70,8 +78,8 @@ public class ParentWord {
      * For Words3
      */
     public ParentWord(Context context, DataRecyclerWords3 dataRecyclerWords3,
-                      String fileName, String activity) {
-        this(context, fileName, activity);
+                      int fileId, String activity) {
+        this(context, fileId, activity);
         this.dataRecyclerWords = dataRecyclerWords3;
     }
 
@@ -79,8 +87,8 @@ public class ParentWord {
      * For Words4
      */
     public ParentWord(Context context, DataRecyclerWords4 dataRecyclerWords4,
-                      String fileName, String activity) {
-        this(context, fileName, activity);
+                      int fileId, String activity) {
+        this(context, fileId, activity);
         this.dataRecyclerWords = dataRecyclerWords4;
     }
 
@@ -88,8 +96,8 @@ public class ParentWord {
      * For Words5
      */
     public ParentWord(Context context, DataRecyclerWords5 dataRecyclerWords5,
-                      String fileName, String activity) {
-        this(context, fileName, activity);
+                      int fileId, String activity) {
+        this(context, fileId, activity);
         this.dataRecyclerWords = dataRecyclerWords5;
     }
 
@@ -97,19 +105,19 @@ public class ParentWord {
      * For Words6
      */
     public ParentWord(Context context, DataRecyclerWords6 dataRecyclerWords6,
-                      String fileName, String activity) {
-        this(context, fileName, activity);
+                      int fileId, String activity) {
+        this(context, fileId, activity);
         this.dataRecyclerWords = dataRecyclerWords6;
     }
 
 
     @SuppressLint("SetTextI18n")
     public void initialize() {
-        FloatingActionButton fab = ((Activity) context).findViewById(R.id.fab_words);
+        fabAudio = ((Activity) context).findViewById(R.id.fab_words);
         audioBack = ((Activity) context).findViewById(R.id.back_words);
         AppCompatSeekBar seekBar = ((Activity) context).findViewById(R.id.wordSeek);
 
-        TextView toggle = ((Activity) context).findViewById(R.id.change_lang_tog);
+        toggle_lan = ((Activity) context).findViewById(R.id.change_lang_tog);
         TextView toolbarText = ((Activity) context).findViewById(R.id.toolbar_text_p);
         btnBack = ((Activity) context).findViewById(R.id.menu_button_p);
         toolbarText.setText("Words");
@@ -121,9 +129,26 @@ public class ParentWord {
         LinearLayoutManager llm = new LinearLayoutManager(context);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(llm);
-        initAdapter(toggle);
-        audioInit = new AudioWords(fab, seekBar, recyclerView, audioBack, context, fileName);
+        initAdapter(toggle_lan);
+        Handler handler = new Handler();
+        audioInit = new AudioInit(fabAudio, handler, seekBar, recyclerView, audioBack, context, fileId);
         audioInit.audio();
+        imgGuide = ((Activity) context).findViewById(R.id.img_guide);
+        helpInit();
+    }
+
+    private void helpInit() {
+        ParentHelp parentHelp = new ParentHelp(context, toggle_lan,
+                fabAudio, imgGuide);
+        parentHelp.initializeConWord();
+        imgGuide.setOnClickListener(v -> {
+            SharedPreferences preferences = context
+                    .getSharedPreferences("prompt", Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = preferences.edit();
+            editor.putBoolean("showed?", false);
+            editor.apply();
+            parentHelp.initializeConWord();
+        });
     }
 
     @SuppressLint("SetTextI18n")
@@ -163,7 +188,7 @@ public class ParentWord {
 
                     contactRecyclerWordses.add(listContact.get(i));
                 }
-            }else {
+            } else {
                 isToggled = true;
                 toggle.setText("fa");
                 for (int i = 0; i < length; i++) {
@@ -213,11 +238,8 @@ public class ParentWord {
      * Before invoking this function, invoke initialize() method
      */
     public void onStop() {
-        if (audioInit.mp != null) {
-            if (audioInit.mp.isPlaying()) {
-                audioInit.fabChanges();
-                audioInit.mp.pause();
-            }
+        if (audioInit.mp != null && audioInit.mp.isPlaying()) {
+            audioInit.mp.pause();
         }
     }
 
@@ -226,12 +248,13 @@ public class ParentWord {
      * Before invoking this function, invoke initialize() method
      */
     public void onPause() {
-        if (audioInit.mp != null) {
-            if (audioInit.mp.isPlaying()) {
-                audioInit.fabChanges();
-                audioInit.mp.pause();
-            }
+        if (audioInit.mp != null && audioInit.mp.isPlaying()) {
+            fabAudio.setImageDrawable(ContextCompat.getDrawable(context.getApplicationContext()
+                    , R.drawable.ic_play_arrow_black_24dp));
+            audioInit.mp.pause();
+            audioInit.state = true;
         }
+
     }
 
 

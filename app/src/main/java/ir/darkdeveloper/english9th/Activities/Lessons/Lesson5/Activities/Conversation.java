@@ -30,7 +30,7 @@ public class Conversation extends AppCompatActivity {
                     Lesson5.practice1, Lesson5.practice2, Lesson5.conversation2,
                     Lesson5.practice1_2, Lesson5.practice2_2,
                     "ir.darkdeveloper.english9th.Activities.Lessons.Lesson5.Lesson5"
-                    , "con5.mp3");
+                    , R.raw.con5);
             parentCon.initialize();
             parentCon.onclick();
             parentCon.sets();

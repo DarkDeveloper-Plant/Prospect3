@@ -6,7 +6,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.os.Handler;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -15,7 +17,10 @@ import com.melnykov.fab.ObservableScrollView;
 
 import androidx.appcompat.widget.AppCompatSeekBar;
 import androidx.cardview.widget.CardView;
-import ir.darkdeveloper.english9th.Activities.BasicActivities.AudioInit.AudioL;
+import androidx.core.content.ContextCompat;
+
+
+import ir.darkdeveloper.english9th.Activities.BasicActivities.AudioInit;
 import ir.plant.english9th.R;
 
 public class ParentCon {
@@ -24,17 +29,19 @@ public class ParentCon {
     private int cs, cc, ct, value;
     private float value2;
     private CardView cardView1, cardView2, cardView3;
-    private AudioL audioInit;
+    private AudioInit audioInit;
     private boolean state = true;
     private Context context;
-    private String con, pra1, pra2, con_fa, pra1_fa, pra2_fa,
-            fileName;
+    private String con, pra1, pra2, con_fa, pra1_fa, pra2_fa;
+    private int fileId;
     private String activity;
+    private ImageView imgGuide;
+    private FloatingActionButton fabAudio;
     private ImageButton btnBack;
 
     public ParentCon(Context context, String con, String pra1, String pra2,
                      String con_fa, String pra1_fa, String pra2_fa,
-                     String activity, String fileName) {
+                     String activity, int fileId) {
         this.context = context;
         this.con = con;
         this.pra1 = pra1;
@@ -43,9 +50,8 @@ public class ParentCon {
         this.con_fa = con_fa;
         this.pra1_fa = pra1_fa;
         this.pra2_fa = pra2_fa;
-        this.fileName = fileName;
+        this.fileId = fileId;
     }
-
 
 
     @SuppressLint("SetTextI18n")
@@ -66,9 +72,9 @@ public class ParentCon {
         relativeLayout = ((Activity) context).findViewById(R.id.rl_l);
         relativeLayout2 = ((Activity) context).findViewById(R.id.media_lay_con);
         AppCompatSeekBar seekBar = ((Activity) context).findViewById(R.id.slider);
-        FloatingActionButton fab = ((Activity) context).findViewById(R.id.fab_cons);
+        fabAudio = ((Activity) context).findViewById(R.id.fab_cons);
         ObservableScrollView scrollView = ((Activity) context).findViewById(R.id.scrollCon);
-        fab.attachToScrollView(scrollView);
+        fabAudio.attachToScrollView(scrollView);
         text_con = ((Activity) context).findViewById(R.id.text_conversation);
         text_p1 = ((Activity) context).findViewById(R.id.text_practice1);
         text_p2 = ((Activity) context).findViewById(R.id.text_practice2);
@@ -79,10 +85,26 @@ public class ParentCon {
         cardView2 = ((Activity) context).findViewById(R.id.c_p_1);
         cardView3 = ((Activity) context).findViewById(R.id.c_p_2);
         toolbarText.setText("Conversation");
-        audioInit = new AudioL(fab, seekBar, relativeLayout2, context, fileName);
+        Handler handler = new Handler();
+        audioInit = new AudioInit(fabAudio, handler, scrollView, relativeLayout2, context, seekBar, fileId);
         audioInit.audio();
+        imgGuide = ((Activity) context).findViewById(R.id.img_guide);
+        helpInit();
     }
 
+    private void helpInit() {
+        ParentHelp parentHelp = new ParentHelp(context, toggle_lan,
+                fabAudio, imgGuide);
+        parentHelp.initializeConWord();
+        imgGuide.setOnClickListener(v -> {
+            SharedPreferences preferences = context
+                    .getSharedPreferences("prompt", Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = preferences.edit();
+            editor.putBoolean("showed?", false);
+            editor.apply();
+            parentHelp.initializeConWord();
+        });
+    }
 
 
     /**
@@ -113,7 +135,6 @@ public class ParentCon {
     }
 
 
-
     /**
      * Before invoking this function, invoke initialize() method
      */
@@ -142,13 +163,12 @@ public class ParentCon {
     }
 
 
-
     /**
      * Before invoking this function, invoke initialize() method
      */
     public void sets() {
         relativeLayout2.setBackgroundColor(context.getResources().getColor(R.color.light));
-        if (cc == 1){
+        if (cc == 1) {
             text_con.setTextColor(Color.BLACK);
             text_p1.setTextColor(Color.BLACK);
             text_p2.setTextColor(Color.BLACK);
@@ -218,11 +238,8 @@ public class ParentCon {
      * Before invoking this function, invoke initialize() method
      */
     public void onStop() {
-        if (audioInit.mp != null) {
-            if (audioInit.mp.isPlaying()) {
-                audioInit.fabChanges();
-                audioInit.mp.pause();
-            }
+        if (audioInit.mp != null && audioInit.mp.isPlaying()) {
+            audioInit.mp.pause();
         }
     }
 
@@ -231,11 +248,11 @@ public class ParentCon {
      * Before invoking this function, invoke initialize() method
      */
     public void onPause() {
-        if (audioInit.mp != null) {
-            if (audioInit.mp.isPlaying()) {
-                audioInit.fabChanges();
-                audioInit.mp.pause();
-            }
+        if (audioInit.mp != null && audioInit.mp.isPlaying()) {
+            fabAudio.setImageDrawable(ContextCompat.getDrawable(context.getApplicationContext()
+                    , R.drawable.ic_play_arrow_black_24dp));
+            audioInit.mp.pause();
+            audioInit.state = true;
         }
     }
 
@@ -243,7 +260,7 @@ public class ParentCon {
     /**
      * Before invoking this function, invoke initialize() method
      */
-    public void onBackPressed(){
+    public void onBackPressed() {
         context.startActivity(new Intent(activity));
         ((Activity) context).finish();
     }

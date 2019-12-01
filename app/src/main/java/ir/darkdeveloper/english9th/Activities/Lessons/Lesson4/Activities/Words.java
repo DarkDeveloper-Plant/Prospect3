@@ -21,7 +21,7 @@ public class Words extends AppCompatActivity {
         try {
 
             setContentView(R.layout.fragment_words);
-            parentWord = new ParentWord(this, new DataRecyclerWords4(), "word4.mp3",
+            parentWord = new ParentWord(this, new DataRecyclerWords4(), R.raw.word4,
                     "ir.darkdeveloper.english9th.Activities.Lessons.Lesson4.Lesson4");
             parentWord.initialize();
             parentWord.onclick();

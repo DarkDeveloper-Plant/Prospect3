@@ -14,10 +14,6 @@ import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import com.downloader.Error;
-import com.downloader.OnDownloadListener;
-import com.downloader.PRDownloader;
-import com.downloader.PRDownloaderConfig;
 
 import java.io.File;
 import java.util.Objects;
@@ -26,11 +22,9 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.drawerlayout.widget.DrawerLayout;
 
 import ir.darkdeveloper.english9th.Activities.BasicActivities.CrashHandler.CrashHandler;
 import ir.darkdeveloper.english9th.Activities.BasicActivities.CrashHandler.CrashHandling;
-import ir.mahdi.mzip.zip.ZipArchive;
 import ir.plant.english9th.R;
 
 public class DownloadCenter extends AppCompatActivity {
@@ -46,11 +40,11 @@ public class DownloadCenter extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         try {
-            PRDownloaderConfig config = PRDownloaderConfig.newBuilder()
+        /*    PRDownloaderConfig config = PRDownloaderConfig.newBuilder()
                     .setDatabaseEnabled(true)
                     .build();
             PRDownloader.initialize(getApplicationContext(), config);
-
+*/
             setContentView(R.layout.activity_down_center);
             toolbarInit();
             mainInit();
@@ -99,7 +93,7 @@ public class DownloadCenter extends AppCompatActivity {
                 info.isConnected() &&
                 sp.getBoolean("granted?", false)) {
 
-            PRDownloader.download(DOWNLOAD_URL, PATH, "audio.zip")
+        /*    PRDownloader.download(DOWNLOAD_URL, PATH, "audio.zip")
                     .build()
                     .setOnStartOrResumeListener(() -> Toast.makeText(this,
                             "File is being downloaded. Please wait.", Toast.LENGTH_LONG).show())
@@ -109,9 +103,9 @@ public class DownloadCenter extends AppCompatActivity {
                         progressView.setProgress((int) progressPercent);
                         progressView.setSecondaryProgress((int) progress.currentBytes + 10);
                         btnDownload.setText("Downloading " + (int) progressPercent + "%");
-                    })
+                    })*/
 
-                    .start(new OnDownloadListener() {
+                   /* .start(new OnDownloadListener() {
                         @Override
                         public void onDownloadComplete() {
                             btnCache.setEnabled(true);
@@ -129,7 +123,7 @@ public class DownloadCenter extends AppCompatActivity {
                             Toast.makeText(DownloadCenter.this,
                                     "مشکلی پیش آمد دوباره امتحان کنید", Toast.LENGTH_LONG).show();
                         }
-                    });
+                    });*/
 
 
         } else {
@@ -171,7 +165,7 @@ public class DownloadCenter extends AppCompatActivity {
         } else {
 
             if (zipFile.exists()) {
-                ZipArchive.unzip(PATH + "audio.zip", PATH, "");
+                //ZipArchive.unzip(PATH + "audio.zip", PATH, "");
                 findViewById(R.id.imgDone).setVisibility(View.VISIBLE);
                 btnDownload.setVisibility(View.GONE);
                 progressView.setVisibility(View.GONE);

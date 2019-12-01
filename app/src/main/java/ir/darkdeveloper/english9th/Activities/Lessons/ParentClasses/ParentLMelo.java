@@ -6,19 +6,22 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.os.Handler;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.AppCompatSeekBar;
 import androidx.cardview.widget.CardView;
+import androidx.core.content.ContextCompat;
 
 import com.melnykov.fab.FloatingActionButton;
 import com.melnykov.fab.ObservableScrollView;
 
 import ir.darkdeveloper.english9th.Activities.AdBase;
-import ir.darkdeveloper.english9th.Activities.BasicActivities.AudioInit.AudioL;
+import ir.darkdeveloper.english9th.Activities.BasicActivities.AudioInit;
 import ir.plant.english9th.R;
 
 public class ParentLMelo {
@@ -29,17 +32,21 @@ public class ParentLMelo {
     private float value2;
     private CardView cardView;
     private RelativeLayout relativeLayout;
-    private AudioL audioInit;
-    private String lmelody, lmelody_fa, fileName;
+    private AudioInit audioInit;
+    private FloatingActionButton fabAudio;
+    private int fileId;
+    private String lmelody, lmelody_fa;
     private String activity;
     private ImageButton btnBack;
+    private ImageView imgGuide;
     private ObservableScrollView scrollView;
     private boolean state = true;
 
-    public ParentLMelo(Context context, String lmelody, String lmelody_fa, String fileName, String activity) {
+    public ParentLMelo(Context context, String lmelody, String lmelody_fa,
+                       int fileId, String activity) {
         this.context = context;
         this.lmelody = lmelody;
-        this.fileName = fileName;
+        this.fileId = fileId;
         this.activity = activity;
         this.lmelody_fa = lmelody_fa;
     }
@@ -47,10 +54,9 @@ public class ParentLMelo {
     @SuppressLint("SetTextI18n")
     public void initialize() {
         AppCompatSeekBar seekBar = ((Activity) context).findViewById(R.id.slider);
-        FloatingActionButton fab = ((Activity) context).findViewById(R.id.fab_lan);
+        fabAudio = ((Activity) context).findViewById(R.id.fab_lan);
         scrollView = ((Activity) context).findViewById(R.id.scrollLan);
         btnBack = ((Activity) context).findViewById(R.id.menu_button_p);
-        fab.attachToScrollView(scrollView);
         textView = ((Activity) context).findViewById(R.id.textL);
         SharedPreferences preferences = context.getSharedPreferences("font_size", Context.MODE_PRIVATE);
         TextView toolbarText = ((Activity) context).findViewById(R.id.toolbar_text_p);
@@ -68,8 +74,25 @@ public class ParentLMelo {
         relativeLayout = ((Activity) context).findViewById(R.id.media_lay_lm);
         SharedPreferences preferences2 = context.getSharedPreferences("font_margin", Context.MODE_PRIVATE);
         value2 = preferences2.getFloat("fontmargin", 0);
-        audioInit = new AudioL(fab, seekBar, relativeLayout, context, fileName);
+        Handler handler = new Handler();
+        audioInit = new AudioInit(fabAudio, handler, scrollView, relativeLayout, context, seekBar, fileId);
         audioInit.audio();
+        imgGuide = ((Activity) context).findViewById(R.id.img_guide);
+        helpInit();
+    }
+
+    private void helpInit() {
+        ParentHelp parentHelp = new ParentHelp(context, toggle_lan,
+                fabAudio, imgGuide);
+        parentHelp.initializeConWord();
+        imgGuide.setOnClickListener(v -> {
+            SharedPreferences preferences = context
+                    .getSharedPreferences("prompt", Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = preferences.edit();
+            editor.putBoolean("showed?", false);
+            editor.apply();
+            parentHelp.initializeConWord();
+        });
     }
 
     /**
@@ -165,23 +188,21 @@ public class ParentLMelo {
      * Before invoking this function, invoke initialize() method
      */
     public void onStop() {
-        if (audioInit.mp != null) {
-            if (audioInit.mp.isPlaying()) {
-                audioInit.fabChanges();
-                audioInit.mp.pause();
-            }
+        if (audioInit.mp != null && audioInit.mp.isPlaying()) {
+            audioInit.mp.pause();
         }
     }
+
 
     /**
      * Before invoking this function, invoke initialize() method
      */
     public void onPause() {
-        if (audioInit.mp != null) {
-            if (audioInit.mp.isPlaying()) {
-                audioInit.fabChanges();
-                audioInit.mp.pause();
-            }
+        if (audioInit.mp != null && audioInit.mp.isPlaying()) {
+            fabAudio.setImageDrawable(ContextCompat.getDrawable(context.getApplicationContext()
+                    , R.drawable.ic_play_arrow_black_24dp));
+            audioInit.mp.pause();
+            audioInit.state = true;
         }
     }
 

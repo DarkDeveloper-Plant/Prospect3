@@ -26,7 +26,7 @@ public class Conversation extends AppCompatActivity {
                     Lesson2.practice1, Lesson2.practice2, Lesson2.conversation2,
                     Lesson2.practice1_2, Lesson2.practice2_2,
                     "ir.darkdeveloper.english9th.Activities.Lessons.Lesson2.Lesson2"
-                    , "con2.mp3");
+                    , R.raw.con2);
             parentCon.initialize();
             parentCon.onclick();
             parentCon.sets();

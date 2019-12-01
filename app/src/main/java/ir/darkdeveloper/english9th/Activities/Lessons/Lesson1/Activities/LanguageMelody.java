@@ -23,7 +23,7 @@ public class LanguageMelody extends AppCompatActivity {
         try {
 
             setContentView(R.layout.fragment_language_melody);
-            parentLMelo = new ParentLMelo(this, Lesson1.language, Lesson1.language2, "l_melody1.mp3",
+            parentLMelo = new ParentLMelo(this, Lesson1.language, Lesson1.language2, R.raw.l_melody1,
                     "ir.darkdeveloper.english9th.Activities.Lessons.Lesson1.Lesson1");
             parentLMelo.initialize();
             parentLMelo.Texts();

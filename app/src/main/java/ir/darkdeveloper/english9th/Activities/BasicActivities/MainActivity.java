@@ -44,7 +44,6 @@ import ir.darkdeveloper.english9th.Activities.Lessons.Tests.TestMain;
 import ir.darkdeveloper.english9th.Adapters.RecyclerAdapters.AdapterRecyclerMain;
 import ir.darkdeveloper.english9th.Contacts.ContactRecyclerMain;
 import ir.darkdeveloper.english9th.Data.DataRecyclerMain;
-import ir.databeen.sdk.Databeen;
 import ir.plant.english9th.R;
 import ir.tapsell.sdk.Tapsell;
 
@@ -108,8 +107,9 @@ public class MainActivity extends AppCompatActivity
             if (file1.exists()) {
                 deleteDirectory(file1);
             }
+
             InitializeSQLCipher();
-            new AlertDialog.Builder(MainActivity.this)
+        /*    new AlertDialog.Builder(MainActivity.this)
                     .setTitle("تغییرات نسخه جدید: " + VERSION_NAME)
                     .setMessage(getEmoji(0x2705) + " حل مشکل ظاهری بخش های conversation و find it.\n" +
                             getEmoji(0x2705) + " برداشته شدن تبلیغات اجباری و اضافه شدن تبلیغات اختیاری")
@@ -122,7 +122,7 @@ public class MainActivity extends AppCompatActivity
                         Intent intent = new Intent(Intent.ACTION_VIEW);
                         intent.setData(Uri.parse("https://t.me/plantdg_ch"));
                         startActivity(intent);
-                    })).show();
+                    })).show();*/
         }
     }
 
@@ -134,7 +134,6 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onPermissionGranted() {
                 InitializeSQLCipher();
-                Databeen.init(MainActivity.this, "945185f355954f7fb6909b9742fd42cd", "Bazaar");
                 editor.putBoolean("granted?", true);
                 editor.apply();
             }
@@ -241,10 +240,7 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
-        SharedPreferences prAd = getSharedPreferences("ad", Context.MODE_PRIVATE);
-        SharedPreferences.Editor editorAd = prAd.edit();
-        editorAd.putBoolean("isAdOpen", true);
-        editorAd.apply();
+
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
@@ -253,14 +249,13 @@ public class MainActivity extends AppCompatActivity
                     .setTitle("نظر به برنامه")
                     .setMessage("اگر از برنامه خوشتان آمد به آن امتیاز دهید یا ویدیو زیر را تا اخر ببینید و از ما حمایت کنید(کمتر از یک دقیقه)")
                     .setPositiveButton("دیدن ویدیو", (v, h) -> adBase.showAd())
-                    .setNegativeButton("5 ستاره میدم", (v, h) -> {
+                    .setNegativeButton("نظر دادن", (v, h) -> {
                         Intent intent = new Intent(Intent.ACTION_EDIT);
                         intent.setData(Uri.parse("bazaar://details?id=" + "ir.plant.english9th"));
                         intent.setPackage("com.farsitel.bazaar");
                         startActivity(intent);
                     })
                     .setNeutralButton("فعلا نه", (v, h) -> {
-                        Databeen.setDefineExit();
                         super.onBackPressed();
                         finish();
                     })
@@ -281,14 +276,6 @@ public class MainActivity extends AppCompatActivity
             startActivity(new Intent(this, Setting_Activity.class));
             finish();
 
-        } else if (id == R.id.nav_download) {
-            if (ps.getBoolean("granted?", false)) {
-                startActivity(new Intent(this, DownloadCenter.class));
-                finish();
-            } else {
-                Toast.makeText(this, "دسترسی را به نرم افزار بدهید",
-                        Toast.LENGTH_SHORT).show();
-            }
         } else if (id == R.id.nav_about) {
             startActivity(new Intent(this, Info.class));
         } else if (id == R.id.nav_share) {

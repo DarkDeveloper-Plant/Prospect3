@@ -6,9 +6,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -20,9 +22,10 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.AppCompatRadioButton;
 import androidx.appcompat.widget.AppCompatSeekBar;
 import androidx.cardview.widget.CardView;
+import androidx.core.content.ContextCompat;
 
 import ir.darkdeveloper.english9th.Activities.AdBase;
-import ir.darkdeveloper.english9th.Activities.BasicActivities.AudioInit.AudioL;
+import ir.darkdeveloper.english9th.Activities.BasicActivities.AudioInit;
 import ir.plant.english9th.R;
 
 public class ParentLrw {
@@ -37,15 +40,18 @@ public class ParentLrw {
     private CardView cardView, cardView2;
     private AppCompatRadioButton radioButton1, radioButton2,
             radioButton3, radioButton4, radioButton5, radioButton6, radioButton7, radioButton8;
-    private AudioL audioInit;
-    private String text1, text2, fileName, activity;
+    private AudioInit audioInit;
+    private FloatingActionButton fabAudio;
+    private String text1, text2, activity;
+    private int fileId;
+    private ImageView imgGuide;
     private ObservableScrollView scrollView;
 
-    public ParentLrw(Context context, String text1, String text2, String fileName, String activity) {
+    public ParentLrw(Context context, String text1, String text2, int fileId, String activity) {
         this.context = context;
         this.text1 = text1;
         this.text2 = text2;
-        this.fileName = fileName;
+        this.fileId = fileId;
         this.activity = activity;
     }
 
@@ -81,13 +87,30 @@ public class ParentLrw {
         toolbarText.setText("L.R.W");
         TextView toggle_lan = ((Activity) context).findViewById(R.id.change_lang_tog);
         btnBack = ((Activity) context).findViewById(R.id.menu_button_p);
-        toggle_lan.setVisibility(View.GONE);
+        toggle_lan.setVisibility(View.INVISIBLE);
         scrollView = ((Activity) context).findViewById(R.id.scrollLRW);
-        FloatingActionButton fab = ((Activity) context).findViewById(R.id.fab_lrw);
-        fab.attachToScrollView(scrollView);
-        audioInit = new AudioL(fab, seekBar, relativeLayout, context, fileName);
+        fabAudio = ((Activity) context).findViewById(R.id.fab_lrw);
+        Handler handler = new Handler();
+        audioInit = new AudioInit(fabAudio, handler, scrollView, relativeLayout, context, seekBar, fileId);
         audioInit.audio();
+        imgGuide = ((Activity) context).findViewById(R.id.img_guide);
+        helpInit();
     }
+
+    private void helpInit() {
+        ParentHelp parentHelp = new ParentHelp(context, fabAudio,
+                imgGuide);
+        parentHelp.initializeGramFind();
+        imgGuide.setOnClickListener(v -> {
+            SharedPreferences preferences = context
+                    .getSharedPreferences("prompt", Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = preferences.edit();
+            editor.putBoolean("showed?", false);
+            editor.apply();
+            parentHelp.initializeGramFind();
+        });
+    }
+
 
 
     /**
@@ -393,11 +416,8 @@ public class ParentLrw {
      * Before invoking this function, invoke initialize() method
      */
     public void onStop() {
-        if (audioInit.mp != null) {
-            if (audioInit.mp.isPlaying()) {
-                audioInit.fabChanges();
-                audioInit.mp.pause();
-            }
+        if (audioInit.mp != null && audioInit.mp.isPlaying()) {
+            audioInit.mp.pause();
         }
     }
 
@@ -406,13 +426,14 @@ public class ParentLrw {
      * Before invoking this function, invoke initialize() method
      */
     public void onPause() {
-        if (audioInit.mp != null) {
-            if (audioInit.mp.isPlaying()) {
-                audioInit.fabChanges();
-                audioInit.mp.pause();
-            }
+        if (audioInit.mp != null && audioInit.mp.isPlaying()) {
+            fabAudio.setImageDrawable(ContextCompat.getDrawable(context.getApplicationContext()
+                    , R.drawable.ic_play_arrow_black_24dp));
+            audioInit.mp.pause();
+            audioInit.state = true;
         }
     }
+
 
 
     /**

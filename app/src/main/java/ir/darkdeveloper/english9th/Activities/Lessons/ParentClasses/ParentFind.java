@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,6 +32,7 @@ public class ParentFind {
     private ObservableScrollView scrollView;
     private String textFind, textFind2, activity;
     private TextView toggle_lan;
+    private ImageView imgGuide;
     private boolean state = true;
 
 
@@ -64,7 +66,24 @@ public class ParentFind {
         cardView = ((Activity) context).findViewById(R.id.find_c);
         SharedPreferences preferences2 = context.getSharedPreferences("font_margin", Context.MODE_PRIVATE);
         value2 = preferences2.getFloat("fontmargin", 0);
+        imgGuide = ((Activity) context).findViewById(R.id.img_guide);
+        helpInit();
     }
+
+    private void helpInit() {
+        ParentHelp parentHelp = new ParentHelp(context, toggle_lan,
+                imgGuide);
+        parentHelp.initializeGramFind();
+        imgGuide.setOnClickListener(v -> {
+            SharedPreferences preferences = context
+                    .getSharedPreferences("prompt", Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = preferences.edit();
+            editor.putBoolean("showed?", false);
+            editor.apply();
+            parentHelp.initializeGramFind();
+        });
+    }
+
 
     /**
      * Before invoking this function, invoke initialize() method

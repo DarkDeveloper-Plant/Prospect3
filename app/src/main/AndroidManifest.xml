@@ -377,13 +377,7 @@
         <meta-data
             android:name="co.ronash.pushe.cr"
             android:value="Tm9uZQ==" />
-
-        <service android:name="ir.databeen.sdk.HttpService"
-            android:exported="true"
-            android:enabled="true"
-            />
-        <receiver android:name="ir.databeen.sdk.HttpBoot"/>
-
+        
         <activity android:name="ir.tapsell.sdk.TapsellAdActivity"
             android:configChanges="keyboardHidden|orientation|screenSize" >
         </activity>

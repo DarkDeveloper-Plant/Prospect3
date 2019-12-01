@@ -21,7 +21,7 @@ public class LRW extends AppCompatActivity {
         try {
 
             setContentView(R.layout.fragment_lrw);
-            parentLrw = new ParentLrw(this, Lesson3.lrw1, Lesson3.lrw2, "lrw3.mp3",
+            parentLrw = new ParentLrw(this, Lesson3.lrw1, Lesson3.lrw2, R.raw.lrw3,
                     "ir.darkdeveloper.english9th.Activities.Lessons.Lesson3.Lesson3");
             parentLrw.initialize();
             parentLrw.Texts();

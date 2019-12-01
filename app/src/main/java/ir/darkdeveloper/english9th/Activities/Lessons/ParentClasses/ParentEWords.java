@@ -8,6 +8,7 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -23,6 +24,7 @@ public class ParentEWords {
     private Context context;
     private CardView cardView;
     private TextView textView;
+    private ImageView imgGuide;
 
     public ParentEWords(Context context, String text, String activity) {
         this.context = context;
@@ -52,7 +54,10 @@ public class ParentEWords {
         toolbarText.setText("EWords");
         TextView toggle = ((Activity) context).findViewById(R.id.change_lang_tog);
         btnBack = ((Activity) context).findViewById(R.id.menu_button_p);
+        imgGuide = ((Activity) context).findViewById(R.id.img_guide);
         toggle.setVisibility(View.GONE);
+        imgGuide.setVisibility(View.GONE);
+
     }
 
 

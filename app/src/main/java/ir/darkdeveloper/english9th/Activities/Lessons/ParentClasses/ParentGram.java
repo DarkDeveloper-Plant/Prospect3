@@ -3,22 +3,20 @@ package ir.darkdeveloper.english9th.Activities.Lessons.ParentClasses;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.SharedPreferences.Editor;
 import android.graphics.Color;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
-
-import com.melnykov.fab.ObservableScrollView;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.cardview.widget.CardView;
 
+import com.melnykov.fab.ObservableScrollView;
+
 import ir.darkdeveloper.english9th.Activities.AdBase;
 import ir.plant.english9th.R;
-import ir.tapsell.sdk.TapsellAd;
 
 public class ParentGram {
 
@@ -30,6 +28,7 @@ public class ParentGram {
     private boolean state = true;
     private String textGram, textGramF, activity;
     private ImageButton btnBack;
+    private ImageView imgGuide;
     private ObservableScrollView scrollView;
 
     public ParentGram(Context context, String textGram, String textGramF, String activity) {
@@ -61,6 +60,22 @@ public class ParentGram {
         toolbarText.setText("Grammar");
         toggle = ((Activity) context).findViewById(R.id.change_lang_tog);
         btnBack = ((Activity) context).findViewById(R.id.menu_button_p);
+        imgGuide = ((Activity) context).findViewById(R.id.img_guide);
+        helpInit();
+    }
+
+    private void helpInit() {
+        ParentHelp parentHelp = new ParentHelp(context, toggle,
+                imgGuide);
+        parentHelp.initializeGramFind();
+        imgGuide.setOnClickListener(v -> {
+            SharedPreferences preferences = context
+                    .getSharedPreferences("prompt", Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = preferences.edit();
+            editor.putBoolean("showed?", false);
+            editor.apply();
+            parentHelp.initializeGramFind();
+        });
     }
 
 

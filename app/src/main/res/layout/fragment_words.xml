@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <include layout="@layout/app_bar_parts"
         android:id="@+id/include"/>
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:id="@+id/back_words"
         android:layout_below="@+id/include"
@@ -19,8 +19,9 @@
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="8dp"
+            android:layout_below="@+id/wordSeek"
             android:background="@drawable/toolbar_shadow" />
-    </LinearLayout>
+    </RelativeLayout>
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_below="@+id/back_words"
