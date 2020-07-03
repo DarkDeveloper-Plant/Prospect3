@@ -4,7 +4,10 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteException;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.view.MenuItem;
@@ -15,8 +18,6 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import net.sqlcipher.database.SQLiteDatabase;
-import net.sqlcipher.database.SQLiteException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -52,23 +53,25 @@ public class Lesson1 extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //handles crashes of this AppCompatActivity
         try {
-
             setContentView(R.layout.activity_lesson);
             toolbar = findViewById(R.id.toolbar);
             setSupportActionBar(toolbar);
             Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
             ini();
             Themes();
-            MainActivity.database = SQLiteDatabase.openOrCreateDatabase(MainActivity.desPath + "data", "plant2113853211", null);
+            //initializing database
+            MainActivity.database = SQLiteDatabase.openOrCreateDatabase(MainActivity.desPath + "data", null);
             select_lesson1();
             recyclerView();
 
-        } catch (SQLiteException sqe){
+        } catch (SQLiteException sqe) {
 
             Bundle bundle = new Bundle();
             bundle.putBoolean("sqlException", true);
             sqe.printStackTrace();
+            //this custom class logs crashes
             new CrashHandler().catchException(sqe, this);
             Intent nextActivity = new Intent(this, CrashHandling.class);
             nextActivity.putExtras(bundle);
@@ -85,6 +88,7 @@ public class Lesson1 extends AppCompatActivity {
     }
 
     private void recyclerView() {
+        //Recycler init
         List<ContactLessons> lessonsList = new ArrayList<>();
         RecyclerView recyclerView = findViewById(R.id.recyclerLess);
         for (int i = 0; i <= 6; i++) {
@@ -94,7 +98,23 @@ public class Lesson1 extends AppCompatActivity {
             contactLessons.fileName = dataRecyclerLess.fileName1[i];
             lessonsList.add(contactLessons);
         }
+
+        //Checking for orientation and screen size to manipulate grid span
         GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 2);
+        int orientation = getResources().getConfiguration().orientation;
+        if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            gridLayoutManager = new GridLayoutManager(this, 3);
+        }
+        if ((getResources().getConfiguration().screenLayout &
+                Configuration.SCREENLAYOUT_SIZE_MASK) ==
+                Configuration.SCREENLAYOUT_SIZE_XLARGE) {
+            gridLayoutManager = new GridLayoutManager(this, 3);
+
+            if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
+                gridLayoutManager = new GridLayoutManager(this, 4);
+            }
+        }
+
         recyclerView.setLayoutManager(gridLayoutManager);
         recyclerView.setHasFixedSize(true);
         recyclerView.setAdapter(new AdapterLesson1(getBaseContext(), lessonsList));
@@ -109,6 +129,7 @@ public class Lesson1 extends AppCompatActivity {
 
     @SuppressLint("SetTextI18n")
     private void ini() {
+        // You can change it getString for every sharedPref but I don't have time to refactor them in settings
         color = getSharedPreferences("color?", Context.MODE_PRIVATE);
         cc = color.getInt("color??", 4);
         color1 = getSharedPreferences("color?", Context.MODE_PRIVATE);
@@ -123,6 +144,7 @@ public class Lesson1 extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 
+        // defines action of back icon on the toolbar
         if (id == android.R.id.home) {
             startActivity(new Intent(this, MainActivity.class));
             finish();
@@ -138,7 +160,12 @@ public class Lesson1 extends AppCompatActivity {
     }
 
     private void select_lesson1() {
-
+        // Every columnIndex must be the column name you defined in you external db.
+        // My database has 6 tables instead of 1 table with 6 rows. my bad:(
+        // but this code supports that too. this is a loop so it iterates the whole
+        // table with every row and passes data to the lesson1 which is an Array
+        // and also you can use this part of code in upper classes and access data
+        // in lower classes(I didn't try that)
         try (Cursor cursor = MainActivity.database.rawQuery("SELECT * FROM 'lesson1'",
                 null)) {
             while (cursor.moveToNext()) {
@@ -186,7 +213,8 @@ public class Lesson1 extends AppCompatActivity {
 
     }
 
-    private void Themes() {
+    private void Themes(){
+        // Changes background color
         if (cc == 5) {
             getWindow().getDecorView().setBackgroundColor(getResources().getColor(R.color.dark));
         } else if (cc == 6) {

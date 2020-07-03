@@ -27,6 +27,9 @@ import ir.darkdeveloper.english9th.Activities.BasicActivities.CrashHandler.Crash
 import ir.darkdeveloper.english9th.Activities.BasicActivities.CrashHandler.CrashHandling;
 import ir.plant.english9th.R;
 
+// I commented some parts and libs in app.gradle and remove this part of app
+// because I don't longer need it but some code are useful.
+// This part downloads a zip file and unzips it to a custom location
 public class DownloadCenter extends AppCompatActivity {
 
     private static final String PATH = Environment.getExternalStorageDirectory() + "/Prospect3/media/";

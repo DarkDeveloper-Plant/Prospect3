@@ -14,6 +14,9 @@ import ir.plant.english9th.R;
 
 public class EWords extends AppCompatActivity {
 
+    // Some parts of this project are same with same actions
+    // so I made a Parent class that I can pass specific data.
+    // this helps code maintainable!
     ParentEWords parentEWords;
 
     @Override

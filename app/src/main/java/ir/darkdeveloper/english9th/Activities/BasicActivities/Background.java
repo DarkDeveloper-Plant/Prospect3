@@ -15,7 +15,7 @@ import androidx.annotation.NonNull;
 /**
  * Created by darkdeveloper on 9/11/17.
  */
-
+// background animation of gradient colors!
 public class Background {
 
         private static final int MIN = 1500;

@@ -23,6 +23,10 @@ import androidx.appcompat.widget.Toolbar;
 import ir.darkdeveloper.english9th.Activities.BasicActivities.CrashHandler.CrashHandler;
 import ir.plant.english9th.R;
 
+
+// this part is looks like a mess especially how i used SharedPref
+// but the main idea is to use SharedPref to save state of ui changes
+
 public class Setting_Activity extends AppCompatActivity {
     @SuppressLint("StaticFieldLeak")
     public static Toolbar toolbar_sett;

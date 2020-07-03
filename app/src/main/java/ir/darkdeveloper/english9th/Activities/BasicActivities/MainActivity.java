@@ -6,6 +6,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -24,8 +25,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.navigation.NavigationView;
 import com.gun0912.tedpermission.PermissionListener;
 import com.gun0912.tedpermission.TedPermission;
-
-import net.sqlcipher.database.SQLiteDatabase;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -56,11 +55,13 @@ public class MainActivity extends AppCompatActivity
     private LinearLayoutManager linearLayoutManager;
     public static SQLiteDatabase database;
     public static final String desPath = Environment.getExternalStorageDirectory()
-            + "/Android/data/ir.plant.english9th/";
+            + File.separator + "Android" + File.separator + "data" + File.separator + "ir.plant.english9th" + File.separator;
     private NavigationView navigationView;
     private SharedPreferences ps;
     private int cs;
-    public static final String VERSION_NAME = "5.98527";
+
+    public final static String VERSION_NAME = "6.990415";
+
     private AdBase adBase;
 
     @Override
@@ -100,19 +101,23 @@ public class MainActivity extends AppCompatActivity
     private void intro() {
         ps = getSharedPreferences("permission", Context.MODE_PRIVATE);
 
+        // To grant and to handle dangerous permissions
         grantPermission();
 
+        // if the first time that app run
         if (isFirstTime()) {
             File file1 = new File(Environment.getExternalStorageDirectory() + "/.P/");
             if (file1.exists()) {
                 deleteDirectory(file1);
             }
-
             InitializeSQLCipher();
+
+            //You can use to show the user what was the latest changes
+
         /*    new AlertDialog.Builder(MainActivity.this)
                     .setTitle("تغییرات نسخه جدید: " + VERSION_NAME)
                     .setMessage(getEmoji(0x2705) + " حل مشکل ظاهری بخش های conversation و find it.\n" +
-                            getEmoji(0x2705) + " برداشته شدن تبلیغات اجباری و اضافه شدن تبلیغات اختیاری")
+                            getEmoji(0x2705) + " برداشته شدن تبلیغات")
                     .setPositiveButton("کانال سروش", (dialogInterface, i) -> {
                         Intent intent = new Intent(Intent.ACTION_VIEW);
                         intent.setData(Uri.parse("http://sapp.ir/plantdg"));
@@ -134,6 +139,7 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onPermissionGranted() {
                 InitializeSQLCipher();
+                //using this pref to be sure that permissions are granted later
                 editor.putBoolean("granted?", true);
                 editor.apply();
             }
@@ -172,25 +178,34 @@ public class MainActivity extends AppCompatActivity
             path.delete();*/
 
             File[] files = path.listFiles();
-            for (File file1 : files) {
-                if (file1.isDirectory()) {
-                    deleteDirectory(file1);
-                } else {
-                    file1.delete();
+            if (files != null) {
+                for (File file1 : files) {
+                    if (file1.isDirectory()) {
+                        deleteDirectory(file1);
+                    } else {
+                        file1.delete();
+                    }
                 }
             }
         }
     }
 
     private void InitializeSQLCipher() {
-        SQLiteDatabase.loadLibs(this);
         try {
             File file = new File(desPath);
+            // this part is used to delete and replace the new db
+            // to update the data and columns(some kind of DROP in SQL)
             if (file.exists()) {
                 deleteDirectory(file);
             }
+
+            //on Android 10+ you should add requestLegacyExternalStorage:true in application tag
+            // in manifest because of android 10+ scope storage if you don't the mkdirs won't work
             file.mkdirs();
             file.createNewFile();
+            // Copying database from assets folder to custom path.
+            // Be sure that the path you defined here is
+            // where you should use to access database
             copyDB(getBaseContext().getAssets().open("data"), new FileOutputStream(desPath + "data"));
 
         } catch (FileNotFoundException f) {
@@ -201,6 +216,17 @@ public class MainActivity extends AppCompatActivity
             e.printStackTrace();
         }
 
+    }
+
+    private void copyDB(InputStream inputStream, OutputStream outputStream) throws IOException {
+
+        byte[] buffer = new byte[1024];
+        int length;
+        while ((length = inputStream.read(buffer)) > 0) {
+            outputStream.write(buffer, 0, length);
+        }
+        inputStream.close();
+        outputStream.close();
     }
 
 
@@ -319,19 +345,7 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
-
-    private void copyDB(InputStream inputStream, OutputStream outputStream) throws IOException {
-
-        byte[] buffer = new byte[1024];
-        int length;
-        while ((length = inputStream.read(buffer)) > 0) {
-            outputStream.write(buffer, 0, length);
-        }
-        inputStream.close();
-        outputStream.close();
-    }
-
-
+    // You can add emoji to text using this, every emoji has a specific unicode
     public String getEmoji(int unicode) {
         return new String((Character.toChars(unicode)));
     }

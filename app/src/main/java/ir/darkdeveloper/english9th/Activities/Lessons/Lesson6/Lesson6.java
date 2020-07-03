@@ -14,8 +14,8 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import net.sqlcipher.database.SQLiteDatabase;
-import net.sqlcipher.database.SQLiteException;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -57,7 +57,7 @@ public class Lesson6 extends AppCompatActivity {
             Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
             ini();
             Themes();
-            MainActivity.database = SQLiteDatabase.openOrCreateDatabase(MainActivity.desPath + "data", "plant2113853211", null);
+            MainActivity.database = SQLiteDatabase.openOrCreateDatabase(MainActivity.desPath + "data", null);
             select_lesson6();
             recyclerView();
 

@@ -85,6 +85,7 @@ public class ParentCon {
         cardView2 = ((Activity) context).findViewById(R.id.c_p_1);
         cardView3 = ((Activity) context).findViewById(R.id.c_p_2);
         toolbarText.setText("Conversation");
+        //Initializing Audio with the custom AudioInit class
         Handler handler = new Handler();
         audioInit = new AudioInit(fabAudio, handler, scrollView, relativeLayout2, context, seekBar, fileId);
         audioInit.audio();
@@ -93,6 +94,8 @@ public class ParentCon {
     }
 
     private void helpInit() {
+        // This is a custom class to indicate an animation to show the elements
+        // and tells the user how to use them
         ParentHelp parentHelp = new ParentHelp(context, toggle_lan,
                 fabAudio, imgGuide);
         parentHelp.initializeConWord();

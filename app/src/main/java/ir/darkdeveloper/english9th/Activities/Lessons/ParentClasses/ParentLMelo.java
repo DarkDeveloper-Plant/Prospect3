@@ -74,6 +74,7 @@ public class ParentLMelo {
         relativeLayout = ((Activity) context).findViewById(R.id.media_lay_lm);
         SharedPreferences preferences2 = context.getSharedPreferences("font_margin", Context.MODE_PRIVATE);
         value2 = preferences2.getFloat("fontmargin", 0);
+        //Initializing Audio with the custom AudioInit class
         Handler handler = new Handler();
         audioInit = new AudioInit(fabAudio, handler, scrollView, relativeLayout, context, seekBar, fileId);
         audioInit.audio();
@@ -82,6 +83,8 @@ public class ParentLMelo {
     }
 
     private void helpInit() {
+        // This is a custom class to indicate an animation to show the elements
+        // and tells the user how to use them
         ParentHelp parentHelp = new ParentHelp(context, toggle_lan,
                 fabAudio, imgGuide);
         parentHelp.initializeConWord();
@@ -115,6 +118,7 @@ public class ParentLMelo {
                 state = true;
             }
         });
+
         AdBase adBase = new AdBase(context);
         SharedPreferences pr = context.getSharedPreferences("ad", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = pr.edit();

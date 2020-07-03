@@ -19,6 +19,8 @@ import androidx.appcompat.widget.Toolbar;
 import ir.darkdeveloper.english9th.Activities.BasicActivities.MainActivity;
 import ir.plant.english9th.R;
 
+// This is an Idea to prevent app to close immediately
+// You can do some actions or give some guidance to user how to use the app
 public class CrashHandling extends AppCompatActivity {
 
     private static final String PATH = Environment.getExternalStorageDirectory().getPath() + "/Prospect3/last_crash.log";

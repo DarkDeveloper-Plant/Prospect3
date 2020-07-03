@@ -65,6 +65,8 @@ public class ParentGram {
     }
 
     private void helpInit() {
+        // This is a custom class to indicate an animation to show the elements
+        // and tells the user how to use them
         ParentHelp parentHelp = new ParentHelp(context, toggle,
                 imgGuide);
         parentHelp.initializeGramFind();

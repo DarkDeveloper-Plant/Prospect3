@@ -14,7 +14,7 @@ import java.util.List;
 
 import ir.plant.english9th.R;
 
-
+// used an external lib [TapTarget]
 public class ParentHelp {
 
     private Context context;

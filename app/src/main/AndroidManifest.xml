@@ -5,7 +5,7 @@
 
     <uses-sdk tools:overrideLibrary="co.ronash.pushe" />
     <uses-permission android:name="android.permission.INTERNET" />
-    <!---->
+    <!--use merge in permissions to prevent other libs to request permissions-->
     <uses-permission
         android:name="android.permission.WRITE_EXTERNAL_STORAGE"
         tools:node="merge" />
@@ -24,6 +24,7 @@
     <uses-permission android:name="com.google.android.gms.permission.ACTIVITY_RECOGNITION"/>
 
     <application
+        android:requestLegacyExternalStorage="true"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher1"
         android:label="@string/app_name"
@@ -31,7 +32,8 @@
         android:supportsRtl="false"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning"
-        tools:replace="supportsRtl">
+        tools:replace="supportsRtl"
+        tools:targetApi="q">
         <activity
             android:name="ir.darkdeveloper.english9th.Activities.BasicActivities.ContactUs"
             android:label="Contact Us"

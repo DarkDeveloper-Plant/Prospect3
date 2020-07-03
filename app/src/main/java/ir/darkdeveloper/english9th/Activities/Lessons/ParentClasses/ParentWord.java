@@ -130,6 +130,8 @@ public class ParentWord {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(llm);
         initAdapter(toggle_lan);
+        //Initializing Audio with the custom AudioInit class
+
         Handler handler = new Handler();
         audioInit = new AudioInit(fabAudio, handler, seekBar, recyclerView, audioBack, context, fileId);
         audioInit.audio();
@@ -138,6 +140,8 @@ public class ParentWord {
     }
 
     private void helpInit() {
+        // This is a custom class to indicate an animation to show the elements
+        // and tells the user how to use them
         ParentHelp parentHelp = new ParentHelp(context, toggle_lan,
                 fabAudio, imgGuide);
         parentHelp.initializeConWord();

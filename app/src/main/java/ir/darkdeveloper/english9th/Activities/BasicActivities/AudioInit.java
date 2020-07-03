@@ -26,6 +26,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import ir.darkdeveloper.english9th.Activities.BasicActivities.DownloadCenter;
 import ir.plant.english9th.R;
 
+// Some kind of parent class
 public class AudioInit {
 
     public boolean state = true;

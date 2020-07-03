@@ -10,6 +10,7 @@ import java.io.File;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 
+// This class logs crashes into a file.
 public class CrashHandler {
 	private static String CRASH_DIR = Environment.getExternalStorageDirectory().getPath() + "/Prospect3/";
 	private static String CRASH_LOG = CRASH_DIR + "last_crash.log";

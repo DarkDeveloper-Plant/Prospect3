@@ -100,14 +100,14 @@ public class ParentLrw {
     private void helpInit() {
         ParentHelp parentHelp = new ParentHelp(context, fabAudio,
                 imgGuide);
-        parentHelp.initializeGramFind();
+        parentHelp.initializeLRW();
         imgGuide.setOnClickListener(v -> {
             SharedPreferences preferences = context
                     .getSharedPreferences("prompt", Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = preferences.edit();
             editor.putBoolean("showed?", false);
             editor.apply();
-            parentHelp.initializeGramFind();
+            parentHelp.initializeLRW();
         });
     }
 
