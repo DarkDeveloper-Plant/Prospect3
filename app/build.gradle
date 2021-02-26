@@ -8,8 +8,8 @@ android {
         minSdkVersion 15
         targetSdkVersion 30
         buildToolsVersion '29.0.2'
-        versionCode 32
-        versionName '6.990415'
+        versionCode 33
+        versionName '6.991208'
         //testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -38,7 +38,7 @@ android {
         exclude 'META-INF/notice.txt'
         exclude 'META-INF/ASL2.0'
     }
-    buildToolsVersion '29.0.2'
+    buildToolsVersion '30.0.3'
 }
 
 dependencies {

@@ -160,13 +160,11 @@ public class Lesson1 extends AppCompatActivity {
     }
 
     private void select_lesson1() {
-        // Every columnIndex must be the column name you defined in you external db.
-        // My database has 6 tables instead of 1 table with 6 rows. my bad:(
-        // but this code supports that too. this is a loop so it iterates the whole
+        // this is a loop so it iterates the whole
         // table with every row and passes data to the lesson1 which is an Array
         // and also you can use this part of code in upper classes and access data
-        // in lower classes(I didn't try that)
-        try (Cursor cursor = MainActivity.database.rawQuery("SELECT * FROM 'lesson1'",
+        // in lower classes
+        try (Cursor cursor = MainActivity.database.rawQuery("SELECT * FROM lessons WHERE _id = 1",
                 null)) {
             while (cursor.moveToNext()) {
                 conversation = cursor.getString(cursor.getColumnIndex("content_con"));

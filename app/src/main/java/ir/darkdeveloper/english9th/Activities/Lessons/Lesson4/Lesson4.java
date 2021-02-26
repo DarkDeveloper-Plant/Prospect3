@@ -125,7 +125,7 @@ public class Lesson4 extends AppCompatActivity {
 
 
     private void select_lesson4() {
-        try (Cursor cursor = MainActivity.database.rawQuery("SELECT * FROM 'lesson4'",
+        try (Cursor cursor = MainActivity.database.rawQuery("SELECT * FROM lessons WHERE _id = 4",
                 null)) {
             while (cursor.moveToNext()) {
                 conversation = cursor.getString(cursor.getColumnIndex("content_con"));

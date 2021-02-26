@@ -51,11 +51,11 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private RecyclerView recyclerView;
-    private List<ContactRecyclerMain> contactRecyclerMainList = new ArrayList<>();
+    private final List<ContactRecyclerMain> contactRecyclerMainList = new ArrayList<>();
     private LinearLayoutManager linearLayoutManager;
     public static SQLiteDatabase database;
     public static final String desPath = Environment.getExternalStorageDirectory()
-            + File.separator + "Android" + File.separator + "data" + File.separator + "ir.plant.english9th" + File.separator;
+            + File.separator + "Prospect3" + File.separator;
     private NavigationView navigationView;
     private SharedPreferences ps;
     private int cs;

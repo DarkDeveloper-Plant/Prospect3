@@ -130,7 +130,7 @@ public class Lesson2 extends AppCompatActivity {
 
 
     private void select_lesson2() {
-        try (Cursor cursor = MainActivity.database.rawQuery("SELECT * FROM 'lesson2'",
+        try (Cursor cursor = MainActivity.database.rawQuery("SELECT * FROM lessons WHERE _id = 2",
                 null)) {
             while (cursor.moveToNext()) {
                 conversation = cursor.getString(cursor.getColumnIndex("content_con"));
