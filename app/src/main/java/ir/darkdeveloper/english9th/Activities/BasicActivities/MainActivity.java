@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity
     private SharedPreferences ps;
     private int cs;
 
-    public final static String VERSION_NAME = "6.990415";
+    public final static String VERSION_NAME = "6.991208";
 
     private AdBase adBase;
 
@@ -110,7 +110,6 @@ public class MainActivity extends AppCompatActivity
             if (file1.exists()) {
                 deleteDirectory(file1);
             }
-            InitializeSQLCipher();
 
             //You can use to show the user what was the latest changes
 
