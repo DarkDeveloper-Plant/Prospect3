@@ -6,7 +6,7 @@ android {
     defaultConfig {
         applicationId 'ir.plant.english9th'
         minSdkVersion 15
-        targetSdkVersion 30
+        targetSdkVersion 29
         buildToolsVersion '29.0.2'
         versionCode 33
         versionName '6.991208'
