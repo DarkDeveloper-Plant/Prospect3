@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -57,7 +58,9 @@ public class Lesson5 extends AppCompatActivity {
             Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
             ini();
             Themes();
-            MainActivity.database = SQLiteDatabase.openOrCreateDatabase(MainActivity.desPath + "data", null);
+            String desPath = this.getExternalFilesDir(null)
+                    + File.separator + "data" + File.separator;
+            MainActivity.database = SQLiteDatabase.openOrCreateDatabase(desPath + "data", null);
             select_lesson5();
             recyclerView();
 

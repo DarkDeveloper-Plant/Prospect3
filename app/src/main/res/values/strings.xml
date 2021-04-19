@@ -14,8 +14,8 @@
     <string name="title_activity_lesson6">Lesson6</string>
     <string name="title_activity_info">Info</string>
 
-    <string name="info_text">Developed by DarkDeveloper\nMade by Plant\n Thanks a lot to Mr. Rasooli</string>
-    <string name="sources">Book: Prospect 3\nSite: eng-dept.talif.sch.ir\nGrammars, translations and Exams: Plant</string>
+    <string name="info_text">Developed by DarkDeveloper</string>
+    <string name="sources">Book: Prospect 3\nSite: eng-dept.talif.sch.ir\nGrammars, translations and Exams: DarkDeveloper</string>
     <string name="title_activity_main2">Main2Activity</string>
     <string name="title_activity_setting_toolbar">SettingToolbar</string>
     <string name="appwidget_text">EXAMPLE</string>

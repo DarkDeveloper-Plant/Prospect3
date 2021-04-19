@@ -6,10 +6,10 @@ android {
     defaultConfig {
         applicationId 'ir.plant.english9th'
         minSdkVersion 15
-        targetSdkVersion 29
+        targetSdkVersion 30
         buildToolsVersion '29.0.2'
-        versionCode 33
-        versionName '6.991208'
+        versionCode 34
+        versionName '7.000130'
         //testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {

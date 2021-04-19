@@ -12,8 +12,7 @@ import java.io.StringWriter;
 
 // This class logs crashes into a file.
 public class CrashHandler {
-	private static String CRASH_DIR = Environment.getExternalStorageDirectory().getPath() + "/Prospect3/";
-	private static String CRASH_LOG = CRASH_DIR + "last_crash.log";
+
 
 	//private static String CRASH_TAG = CRASH_DIR + ".crashed";
 
@@ -24,6 +23,11 @@ public class CrashHandler {
 	private static String VERSION = "Unknown";
 
 	public void catchException(Throwable throwable, Context context){
+
+		String CRASH_DIR = context.getExternalFilesDir(null)
+				+ File.separator  + "logs" + File.separator;
+		String CRASH_LOG = CRASH_DIR + "last_crash.log";
+
 		File f = new File(CRASH_LOG);
 
 		if (f.exists()) {

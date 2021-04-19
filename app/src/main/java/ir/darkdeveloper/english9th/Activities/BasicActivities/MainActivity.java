@@ -54,13 +54,11 @@ public class MainActivity extends AppCompatActivity
     private final List<ContactRecyclerMain> contactRecyclerMainList = new ArrayList<>();
     private LinearLayoutManager linearLayoutManager;
     public static SQLiteDatabase database;
-    public static final String desPath = Environment.getExternalStorageDirectory()
-            + File.separator + "Prospect3" + File.separator;
     private NavigationView navigationView;
     private SharedPreferences ps;
     private int cs;
 
-    public final static String VERSION_NAME = "6.991208";
+    public final static String VERSION_NAME = "7.000130";
 
     private AdBase adBase;
 
@@ -106,11 +104,6 @@ public class MainActivity extends AppCompatActivity
 
         // if the first time that app run
         if (isFirstTime()) {
-            File file1 = new File(Environment.getExternalStorageDirectory() + "/.P/");
-            if (file1.exists()) {
-                deleteDirectory(file1);
-            }
-
             //You can use to show the user what was the latest changes
 
         /*    new AlertDialog.Builder(MainActivity.this)
@@ -191,6 +184,9 @@ public class MainActivity extends AppCompatActivity
 
     private void InitializeSQLCipher() {
         try {
+            String desPath = getExternalFilesDir(null)
+                    + File.separator + "data" + File.separator;
+
             File file = new File(desPath);
             // this part is used to delete and replace the new db
             // to update the data and columns(some kind of DROP in SQL)
@@ -324,19 +320,9 @@ public class MainActivity extends AppCompatActivity
             intent.setPackage("com.farsitel.bazaar");
             startActivity(intent);
         } else if (id == R.id.channel_nav) {
-            new AlertDialog.Builder(MainActivity.this)
-                    .setTitle("کانال")
-                    .setMessage("عضو کانال سروش یا تلگرام ما بشید و از اخبار اطلاع بیابید")
-                    .setPositiveButton("سروش", (v, h) -> {
-                        Intent intent = new Intent(Intent.ACTION_VIEW);
-                        intent.setData(Uri.parse("http://sapp.ir/plantdg"));
-                        startActivity(intent);
-                    })
-                    .setNegativeButton("تلگرام", (v, h) -> {
-                        Intent intent = new Intent(Intent.ACTION_VIEW);
-                        intent.setData(Uri.parse("https://t.me/plantdg_ch"));
-                        startActivity(intent);
-                    }).show();
+            Intent intent = new Intent(Intent.ACTION_VIEW);
+            intent.setData(Uri.parse("https://t.me/plantdg"));
+            startActivity(intent);
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);

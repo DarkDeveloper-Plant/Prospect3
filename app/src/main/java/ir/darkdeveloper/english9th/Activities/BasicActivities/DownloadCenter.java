@@ -32,7 +32,7 @@ import ir.plant.english9th.R;
 // This part downloads a zip file and unzips it to a custom location
 public class DownloadCenter extends AppCompatActivity {
 
-    private static final String PATH = Environment.getExternalStorageDirectory() + "/Prospect3/media/";
+    //private static final String PATH = Environment.getExternalStorageDirectory() + "/Prospect3/media/";
     private ProgressBar progressView;
     private Button btnDownload, btnCache;
     private File audioExists, zipFile;
@@ -138,19 +138,19 @@ public class DownloadCenter extends AppCompatActivity {
     @SuppressLint("SetTextI18n")
     private void clearData() {
 
-        File pathFile = new File(PATH);
-        if (pathFile.exists()) {
-            MainActivity.deleteDirectory(pathFile);
-            Toast.makeText(this, "حذف شد", Toast.LENGTH_SHORT).show();
-            findViewById(R.id.imgDone).setVisibility(View.GONE);
-            btnDownload.setVisibility(View.VISIBLE);
-            progressView.setVisibility(View.VISIBLE);
-            findViewById(R.id.txtDown).setVisibility(View.VISIBLE);
-            findViewById(R.id.backDown).setBackgroundResource(R.drawable.down_card2);
-            progressView.setProgress(0);
-            btnDownload.setText("Get File");
-            findViewById(R.id.imgDown).setVisibility(View.VISIBLE);
-        }
+//        File pathFile = new File(PATH);
+//        if (pathFile.exists()) {
+//            MainActivity.deleteDirectory(pathFile);
+//            Toast.makeText(this, "حذف شد", Toast.LENGTH_SHORT).show();
+//            findViewById(R.id.imgDone).setVisibility(View.GONE);
+//            btnDownload.setVisibility(View.VISIBLE);
+//            progressView.setVisibility(View.VISIBLE);
+//            findViewById(R.id.txtDown).setVisibility(View.VISIBLE);
+//            findViewById(R.id.backDown).setBackgroundResource(R.drawable.down_card2);
+//            progressView.setProgress(0);
+//            btnDownload.setText("Get File");
+//            findViewById(R.id.imgDown).setVisibility(View.VISIBLE);
+//        }
     }
 
     private void doneDownload() {
@@ -196,16 +196,16 @@ public class DownloadCenter extends AppCompatActivity {
     }
 
     private void mainInit() {
-        progressView = findViewById(R.id.progressDown);
-        btnDownload = findViewById(R.id.btnDownload);
-        btnCache = findViewById(R.id.clearCache);
-        btnDownload.setVisibility(View.VISIBLE);
-        zipFile = new File(PATH + "audio.zip");
-        audioExists = new File(PATH + "audio");
-        SharedPreferences prAd = getSharedPreferences("ad", Context.MODE_PRIVATE);
-        SharedPreferences.Editor editorAd = prAd.edit();
-        editorAd.putBoolean("isAdOpen", true);
-        editorAd.apply();
+//        progressView = findViewById(R.id.progressDown);
+//        btnDownload = findViewById(R.id.btnDownload);
+//        btnCache = findViewById(R.id.clearCache);
+//        btnDownload.setVisibility(View.VISIBLE);
+//        zipFile = new File(PATH + "audio.zip");
+//        audioExists = new File(PATH + "audio");
+//        SharedPreferences prAd = getSharedPreferences("ad", Context.MODE_PRIVATE);
+//        SharedPreferences.Editor editorAd = prAd.edit();
+//        editorAd.putBoolean("isAdOpen", true);
+//        editorAd.apply();
     }
 
 

@@ -33,7 +33,7 @@
             <item
                 android:id="@+id/channel_nav"
                 android:icon="@drawable/ic_group_black_24dp"
-                android:title="Channel" />
+                android:title="Developer" />
         </menu>
     </item>
 

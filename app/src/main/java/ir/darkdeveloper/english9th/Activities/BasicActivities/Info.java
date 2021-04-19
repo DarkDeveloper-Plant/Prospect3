@@ -21,7 +21,7 @@ import ir.plant.english9th.R;
 public class Info extends AppCompatActivity {
 
     private FloatingActionButton fab;
-    private AppCompatImageButton telegram, soroush;
+    private AppCompatImageButton telegram, instagram;
     private TextView txtVersion;
 
     @Override
@@ -54,15 +54,15 @@ public class Info extends AppCompatActivity {
             startActivity(contact);
         });
 
-        soroush.setOnClickListener(v ->{
+        instagram.setOnClickListener(v ->{
             Intent intent = new Intent(Intent.ACTION_VIEW);
-            intent.setData(Uri.parse("http://sapp.ir/plantdg"));
+            intent.setData(Uri.parse("https://www.instagram.com/darkdeveloper2/"));
             startActivity(intent);
         });
 
         telegram.setOnClickListener(v ->{
             Intent intent = new Intent(Intent.ACTION_VIEW);
-            intent.setData(Uri.parse("https://t.me/plantdg_ch"));
+            intent.setData(Uri.parse("https://t.me/plantdg"));
             startActivity(intent);
         });
 
@@ -71,7 +71,7 @@ public class Info extends AppCompatActivity {
 
     private void init() {
         fab = findViewById(R.id.fab);
-        soroush = findViewById(R.id.btnSoroush);
+        instagram = findViewById(R.id.btnInstagram);
         telegram = findViewById(R.id.btnTelegram);
         txtVersion = findViewById(R.id.txtVersion);
     }

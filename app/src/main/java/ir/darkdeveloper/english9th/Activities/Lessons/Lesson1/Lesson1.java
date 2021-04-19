@@ -19,6 +19,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -62,7 +63,9 @@ public class Lesson1 extends AppCompatActivity {
             ini();
             Themes();
             //initializing database
-            MainActivity.database = SQLiteDatabase.openOrCreateDatabase(MainActivity.desPath + "data", null);
+            String desPath = this.getExternalFilesDir(null)
+                    + File.separator + "data" + File.separator;
+            MainActivity.database = SQLiteDatabase.openOrCreateDatabase(desPath + "data", null);
             select_lesson1();
             recyclerView();
 

@@ -16,6 +16,7 @@ import java.util.Objects;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+
 import ir.darkdeveloper.english9th.Activities.BasicActivities.MainActivity;
 import ir.plant.english9th.R;
 
@@ -23,7 +24,6 @@ import ir.plant.english9th.R;
 // You can do some actions or give some guidance to user how to use the app
 public class CrashHandling extends AppCompatActivity {
 
-    private static final String PATH = Environment.getExternalStorageDirectory().getPath() + "/Prospect3/last_crash.log";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,8 +57,9 @@ public class CrashHandling extends AppCompatActivity {
             findViewById(R.id.btnSendFile)
                     .setOnClickListener(v -> {
                         Intent intentShareFile = new Intent(Intent.ACTION_SEND);
+                        String PATH = getExternalFilesDir(null)
+                                + File.separator  + "logs" + File.separator;
                         File fileWithinMyDir = new File(PATH);
-
                         if (fileWithinMyDir.exists()) {
                             intentShareFile.setType("text/log");
                             intentShareFile.putExtra(Intent.EXTRA_STREAM, Uri.parse("file://" + PATH));
