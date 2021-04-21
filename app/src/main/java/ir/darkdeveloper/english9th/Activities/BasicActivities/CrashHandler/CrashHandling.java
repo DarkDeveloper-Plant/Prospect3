@@ -12,6 +12,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.List;
 import java.util.Objects;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -23,6 +26,7 @@ import ir.plant.english9th.R;
 // This is an Idea to prevent app to close immediately
 // You can do some actions or give some guidance to user how to use the app
 public class CrashHandling extends AppCompatActivity {
+
 
 
     @Override
@@ -53,24 +57,40 @@ public class CrashHandling extends AppCompatActivity {
             img.setImageResource(R.drawable.crash2);
 
         } else {
+            String PATH = getExternalFilesDir(null) + "/logs/last_crash.log";
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+                findViewById(R.id.btnSendFile).setVisibility(View.GONE);
+                try {
+                    List<String> lines = Files.readAllLines(Paths.get(PATH));
+                    String linesBuilder = "";
+                    for (String s: lines) {
+                        linesBuilder += s + "\n";
+                    }
+                    TextView v = findViewById(R.id.txtCrashReport);
+                    v.setText(linesBuilder);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }else {
 
-            findViewById(R.id.btnSendFile)
-                    .setOnClickListener(v -> {
-                        Intent intentShareFile = new Intent(Intent.ACTION_SEND);
-                        String PATH = getExternalFilesDir(null)
-                                + File.separator  + "logs" + File.separator;
-                        File fileWithinMyDir = new File(PATH);
-                        if (fileWithinMyDir.exists()) {
-                            intentShareFile.setType("text/log");
-                            intentShareFile.putExtra(Intent.EXTRA_STREAM, Uri.parse("file://" + PATH));
+                findViewById(R.id.btnSendFile)
+                        .setOnClickListener(v -> {
+                            Intent intentShareFile = new Intent(Intent.ACTION_SEND);
+                            File fileWithinMyDir = new File(PATH);
 
-                            intentShareFile.putExtra(Intent.EXTRA_SUBJECT,
-                                    "Exception caught!");
-                            intentShareFile.putExtra(Intent.EXTRA_TEXT, "سلام. من حین اجرای برنامه به مشکل زیر برخوردم.");
+                            if (fileWithinMyDir.exists()) {
+                                intentShareFile.setType("text/log");
+                                intentShareFile.putExtra(Intent.EXTRA_STREAM, Uri.parse("file://" + PATH));
 
-                            startActivity(Intent.createChooser(intentShareFile, "Share File"));
-                        }
-                    });
+                                intentShareFile.putExtra(Intent.EXTRA_SUBJECT,
+                                        "Exception caught!");
+                                intentShareFile.putExtra(Intent.EXTRA_TEXT,
+                                        "سلام. من حین اجرای برنامه به مشکل زیر برخوردم.");
+
+                                startActivity(Intent.createChooser(intentShareFile, "Share File"));
+                            }
+                        });
+            }
         }
     }
 
@@ -87,6 +107,7 @@ public class CrashHandling extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
+        super.onBackPressed();
         startActivity(new Intent(this, MainActivity.class));
         finish();
     }

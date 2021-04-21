@@ -67,10 +67,14 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
 
         try {
-            Tapsell.initialize(getApplicationContext()
-                    , "abgaphnhtkbefdfgepcogsljmsiaoehhapnrcncelkeeksolshcbdjtfotrinecabopcfo");
+            try {
+                Tapsell.initialize(getApplicationContext()
+                        , "abgaphnhtkbefdfgepcogsljmsiaoehhapnrcncelkeeksolshcbdjtfotrinecabopcfo");
 
-            Pushe.initialize(this, true);
+                Pushe.initialize(this, true);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
             setContentView(R.layout.activity_main);
             intro();
             ini();
