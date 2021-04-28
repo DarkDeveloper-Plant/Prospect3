@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity
     private SharedPreferences ps;
     private int cs;
 
-    public final static String VERSION_NAME = "7.000130";
+    public final static String VERSION_NAME = "7.000208";
 
     private AdBase adBase;
 
